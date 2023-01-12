@@ -1,3 +1,3 @@
 Hibernate CRUD
 
-cnPayment App 
+cnPayment Apps

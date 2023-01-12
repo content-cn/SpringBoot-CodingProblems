@@ -2,11 +2,16 @@ package com.cn.cnkart.dal;
 
 import javax.persistence.EntityManager;
 
+import com.cn.cnkart.entity.Payment;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.cn.cnkart.entity.Order;
+
+import java.util.List;
+import java.util.Set;
 
 @Repository
 public class OrderDALImpl implements OrderDAL {
@@ -35,4 +40,10 @@ public class OrderDALImpl implements OrderDAL {
 
     }
 
+//    @Override
+//    public Set<Payment> getAllPaymentsByOrderId(String orderId){
+//        Session session = entityManager.unwrap(Session.class);
+//        Order orders = session.get(Order.class, orderId);
+//        return orders.getPayments();
+//    }
 }

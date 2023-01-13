@@ -1,28 +1,27 @@
-package Meal.com.example.Meal.Entity;
+package com.example.Meal.Entity;
 
-public class meal {
-	public long id;
-	public long pnr;
-	public String mealType;
-	public boolean premium;
-	public String mealTime;
+public class Meal {	
 	
-
+	private long pnr;
+	private String mealType = "North Indian";
+	private boolean premium = false;
+	private String mealTime = "Lunch";
 	
-	public meal(long id, long pnr, String mealType, boolean premium, String mealTime) {
-		super();
-		this.id = id;
+	public Meal() {
+		
+	}
+	
+	public Meal(long pnr) {
+		this.pnr = pnr;
+	}
+	
+	public Meal(long pnr, String mealType, boolean premium, String mealTime) {
 		this.pnr = pnr;
 		this.mealType = mealType;
 		this.premium = premium;
 		this.mealTime = mealTime;
 	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public long getPnr() {
 		return pnr;
 	}
@@ -47,8 +46,5 @@ public class meal {
 	public void setMealTime(String mealTime) {
 		this.mealTime = mealTime;
 	}
-	
-	
-	
 
 }

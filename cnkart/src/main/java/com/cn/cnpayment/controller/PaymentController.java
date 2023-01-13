@@ -13,29 +13,48 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cn.cnpayment.entity.Payment;
 import com.cn.cnpayment.service.PaymentService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
 
-	 @Autowired
+	@Autowired
 	PaymentService paymentService;
-	
+
 	@GetMapping("/id/{id}")
 	public Payment getPaymentById(@PathVariable int id)
 	{
 		return paymentService.getPaymentById(id);
 	}
-	
-	@PostMapping("/save")
-	public void savePayment(@RequestBody Payment payment)
+
+	@GetMapping("/paymentType/{paymentType}")
+	public List<Payment> getPaymentByPaymentType(@PathVariable String paymentType)
 	{
-		paymentService.savePayment(payment);
+		return paymentService.getPaymentByPaymentType(paymentType);
 	}
-	
+	@GetMapping("/description/{keyword}")
+	public List<Payment> getPaymentByDescriptionKeyword(@PathVariable String keyword)
+	{
+		return paymentService.getPaymentByDescriptionKeyword(keyword);
+	}
+
+	@PostMapping("/save")
+	public void savePayment(@RequestBody Payment Payment)
+	{
+		paymentService.savePayment(Payment);
+	}
+
 	@DeleteMapping("/delete/id/{id}")
 	public void deletePayment(@PathVariable int id)
 	{
 		paymentService.delete(id);
+	}
+
+	@PutMapping("/update")
+	public void updatePayment(@RequestBody Payment payment)
+	{
+		paymentService.update(payment);
 	}
 
 	@PutMapping("/update/{id}/description/{description}")
@@ -43,5 +62,6 @@ public class PaymentController {
 	{
 		paymentService.updateDescription(id,description);
 	}
-	
+
+
 }

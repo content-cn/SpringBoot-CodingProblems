@@ -1,17 +1,12 @@
-package com.cn.cnkart.dal;
+package com.cn.cnpayment.dal;
 
 import javax.persistence.EntityManager;
 
-import com.cn.cnkart.entity.Payment;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import com.cn.cnkart.entity.Order;
-
-import java.util.List;
-import java.util.Set;
+import com.cn.cnpayment.entity.Order;
 
 @Repository
 public class OrderDALImpl implements OrderDAL {

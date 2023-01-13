@@ -1,4 +1,4 @@
-package com.cn.cnkart.dal;
+package com.cn.cnpayment.dal;
 
 import javax.persistence.EntityManager;
 
@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cn.cnkart.entity.Payment;
+import com.cn.cnpayment.entity.Payment;
 
 @Repository
 public class PaymentDALImpl implements PaymentDAL {

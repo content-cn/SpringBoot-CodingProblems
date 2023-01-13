@@ -1,12 +1,12 @@
-package com.cn.cnkart.service;
+package com.cn.cnpayment.service;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cn.cnkart.dal.PaymentDAL;
-import com.cn.cnkart.entity.Payment;
+import com.cn.cnpayment.dal.PaymentDAL;
+import com.cn.cnpayment.entity.Payment;
 
 @Service
 public class PaymentService {

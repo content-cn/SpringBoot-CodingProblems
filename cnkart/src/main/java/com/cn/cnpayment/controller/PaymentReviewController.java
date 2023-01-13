@@ -1,4 +1,4 @@
-package com.cn.cnkart.controller;
+package com.cn.cnpayment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cn.cnkart.entity.PaymentReview;
-import com.cn.cnkart.service.PaymentReviewService;
+import com.cn.cnpayment.entity.PaymentReview;
+import com.cn.cnpayment.service.PaymentReviewService;
 
 @RestController
 @RequestMapping("/review")

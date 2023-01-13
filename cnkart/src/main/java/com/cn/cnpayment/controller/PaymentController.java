@@ -1,4 +1,4 @@
-package com.cn.cnkart.controller;
+package com.cn.cnpayment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cn.cnkart.entity.Payment;
-import com.cn.cnkart.service.PaymentService;
+import com.cn.cnpayment.entity.Payment;
+import com.cn.cnpayment.service.PaymentService;
 
 @RestController
 @RequestMapping("/payment")

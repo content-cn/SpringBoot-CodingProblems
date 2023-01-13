@@ -1,6 +1,6 @@
-package com.cn.cnkart.dal;
+package com.cn.cnpayment.dal;
 
-import com.cn.cnkart.entity.PaymentReview;
+import com.cn.cnpayment.entity.PaymentReview;
 
 public interface PaymentReviewDAL {
 

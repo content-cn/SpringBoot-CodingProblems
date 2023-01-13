@@ -1,4 +1,4 @@
-package com.cn.cnkart.entity;
+package com.cn.cnpayment.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

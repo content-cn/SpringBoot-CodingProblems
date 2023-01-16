@@ -2,15 +2,11 @@ package com.cn.cnpayment.dal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import com.cn.cnpayment.entity.PaymentReview;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.cn.cnpayment.entity.Payment;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +88,6 @@ public class PaymentDALImpl implements PaymentDAL{
 
 		Session session = entityManager.unwrap(Session.class);
 		Payment payment = session.get(Payment.class, paymentId);
-
 		List<PaymentReview> paymentReviews=payment.getPaymentReviews();
 		return paymentReviews;
 	}
@@ -115,12 +110,9 @@ public class PaymentDALImpl implements PaymentDAL{
 	@Override
 	public void update(Payment updatePayment) {
 		Session session = entityManager.unwrap(Session.class);
-		//fetch the current payment details from the DB
 		Payment currentPayment = session.get(Payment.class, updatePayment.getId());
-		//update the details in the current object
 		currentPayment.setDescription(updatePayment.getDescription());
 		currentPayment.setPaymentType(updatePayment.getPaymentType());
-		//update the database
 		session.update(currentPayment);
 
 	}
@@ -128,13 +120,9 @@ public class PaymentDALImpl implements PaymentDAL{
 	@Override
 	public void updateDescription(int paymentId,String description) {
 		Session session = entityManager.unwrap(Session.class);
-		//fetch the current Payment details from the DB
 		Payment currentPayment = session.get(Payment.class, paymentId);
-		//update the details in the current object
 		currentPayment.setDescription(description);
-		//update the database
 		session.update(currentPayment);
-
 	}
 
 }

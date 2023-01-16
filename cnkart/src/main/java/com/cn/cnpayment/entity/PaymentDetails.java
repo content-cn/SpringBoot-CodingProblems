@@ -16,6 +16,7 @@ public class PaymentDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	@Column
 	private int id;
 	

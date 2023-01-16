@@ -1,9 +1,7 @@
 package com.cn.cnpayment.controller;
 
-import com.cn.cnpayment.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.cn.cnpayment.entity.PaymentReview;
 import com.cn.cnpayment.service.PaymentReviewService;
 

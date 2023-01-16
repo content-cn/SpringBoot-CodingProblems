@@ -1,15 +1,11 @@
 package com.cn.cnpayment.service;
 
 import javax.transaction.Transactional;
-
 import com.cn.cnpayment.dal.PaymentDAL;
 import com.cn.cnpayment.entity.PaymentReview;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.cn.cnpayment.dal.PaymentDAL;
+import org.springframework.stereotype.Service;;
 import com.cn.cnpayment.entity.Payment;
-
 import java.util.List;
 
 @Service
@@ -36,15 +32,33 @@ public class PaymentService {
 	}
 
 	@Transactional
-	public Payment savePayment(Payment Payment) {
+	public List<Payment> getAllPaymentsByCurrency(String currency) {
 
-		return paymentDAL.save(Payment);
+		return paymentDAL.getAllPaymentsByCurrency(currency);
 	}
 
 	@Transactional
-	public void delete(int id) {
-		paymentDAL.delete(id);
+	public List<Payment> getAllPaymentsByQueryType(String queryType) {
 
+		return paymentDAL.getAllPaymentsByQueryType(queryType);
+	}
+
+	@Transactional
+	public List<Payment> getAllPayments() {
+
+		return paymentDAL.getAllPayments();
+	}
+
+	@Transactional
+	public List<PaymentReview> getPaymentReviews(int paymentId) {
+
+		return paymentDAL.getPaymentReviews(paymentId);
+	}
+
+	@Transactional
+	public Payment savePayment(Payment Payment) {
+
+		return paymentDAL.save(Payment);
 	}
 
 	@Transactional
@@ -59,24 +73,10 @@ public class PaymentService {
 		paymentDAL.updateDescription(id,description);
 	}
 
-	public List<Payment> getAllPaymentsByCurrency(String currency) {
+	@Transactional
+	public void delete(int id) {
+		paymentDAL.delete(id);
 
-		return paymentDAL.getAllPaymentsByCurrency(currency);
-	}
-
-	public List<Payment> getAllPaymentsByQueryType(String queryType) {
-
-		return paymentDAL.getAllPaymentsByQueryType(queryType);
-	}
-
-	public List<Payment> getAllPayments() {
-
-		return paymentDAL.getAllPayments();
-	}
-
-	public List<PaymentReview> getPaymentReviews(int paymentId) {
-
-		return paymentDAL.getPaymentReviews(paymentId);
 	}
 
 }

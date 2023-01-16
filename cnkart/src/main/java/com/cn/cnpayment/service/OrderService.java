@@ -1,10 +1,8 @@
 package com.cn.cnpayment.service;
 
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cn.cnpayment.dal.OrderDAL;
 import com.cn.cnpayment.entity.Order;
 
@@ -21,14 +19,12 @@ public class OrderService {
 
     @Transactional
     public void saveOrder(Order order) {
-
         orderDAL.save(order);
     }
 
     @Transactional
     public void delete(int id) {
         orderDAL.delete(id);
-
     }
 
 }

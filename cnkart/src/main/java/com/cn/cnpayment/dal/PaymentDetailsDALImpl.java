@@ -1,15 +1,10 @@
 package com.cn.cnpayment.dal;
 
 import javax.persistence.EntityManager;
-
-import com.cn.cnpayment.entity.Payment;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.cn.cnpayment.entity.PaymentDetails;
-
-import java.util.List;
 
 @Repository
 public class PaymentDetailsDALImpl implements PaymentDetailsDAL {

@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cn.cnpayment.entity.Payment;
 import com.cn.cnpayment.service.PaymentService;
-
 import java.util.List;
 
 @RestController
@@ -46,6 +44,7 @@ public class PaymentController {
 	{
 		return paymentService.getPaymentByPaymentType(paymentType);
 	}
+
 	@GetMapping("/description/{keyword}")
 	public List<Payment> getPaymentByDescriptionKeyword(@PathVariable String keyword)
 	{
@@ -57,6 +56,7 @@ public class PaymentController {
 	{
 		return paymentService.getAllPaymentsByCurrency(currency);
 	}
+
 	@GetMapping("/queryType/{queryType}")
 	public List<Payment> getPaymentsByQueryType(@PathVariable String queryType)
 	{

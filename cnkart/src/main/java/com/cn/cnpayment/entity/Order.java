@@ -1,7 +1,6 @@
 package com.cn.cnpayment.entity;
 
 import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +9,13 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Column
     private int id;
+
     @Column
     private String name;
+
     @Column
     private String category;
 
@@ -33,9 +35,11 @@ public class Order {
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }

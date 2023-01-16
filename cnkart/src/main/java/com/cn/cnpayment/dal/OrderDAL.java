@@ -10,7 +10,4 @@ public interface OrderDAL {
 
     void delete(int id);
 
-//    Set<Payment> getAllPaymentsByOrderId(String orderId);
-
-
 }

@@ -10,10 +10,13 @@ public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	@Column
 	private int id;
+
 	@Column
 	private String paymentType;
+
 	@Column
 	private String description;
 
@@ -29,15 +32,19 @@ public class Payment {
 	public int getId() {
 		return id;
 	}
+
 	public String getPaymentType() {
 		return paymentType;
 	}
+
 	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}

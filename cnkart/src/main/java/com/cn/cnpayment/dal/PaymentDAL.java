@@ -10,7 +10,7 @@ public interface PaymentDAL {
 
 	Payment save(Payment Payment);
 
-	void delete(int id);
+	void delete(int paymentId);
 
 	void update(Payment updatePayment);
 

@@ -3,6 +3,7 @@ package com.cn.cnpayment.service;
 import javax.transaction.Transactional;
 
 import com.cn.cnpayment.dal.PaymentDAL;
+import com.cn.cnpayment.entity.PaymentReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,4 +58,25 @@ public class PaymentService {
 
 		paymentDAL.updateDescription(id,description);
 	}
+
+	public List<Payment> getAllPaymentsByCurrency(String currency) {
+
+		return paymentDAL.getAllPaymentsByCurrency(currency);
+	}
+
+	public List<Payment> getAllPaymentsByQueryType(String queryType) {
+
+		return paymentDAL.getAllPaymentsByQueryType(queryType);
+	}
+
+	public List<Payment> getAllPayments() {
+
+		return paymentDAL.getAllPayments();
+	}
+
+	public List<PaymentReview> getPaymentReviews(int paymentId) {
+
+		return paymentDAL.getPaymentReviews(paymentId);
+	}
+
 }

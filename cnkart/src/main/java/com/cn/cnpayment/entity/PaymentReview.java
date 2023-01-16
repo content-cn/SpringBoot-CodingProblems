@@ -66,4 +66,13 @@ public class PaymentReview {
 	public void setQueryDescription(String queryDescription) {
 		this.queryDescription = queryDescription;
 	}
+
+	@Override
+	public String toString() {
+		return "PaymentReview{" +
+				", queryPersonName='" + queryPersonName + '\'' +
+				", queryType='" + queryType + '\'' +
+				", queryDescription='" + queryDescription + '\'' +
+				'}';
+	}
 }

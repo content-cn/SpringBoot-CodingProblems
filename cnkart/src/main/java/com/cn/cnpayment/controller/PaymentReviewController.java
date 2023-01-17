@@ -1,22 +1,33 @@
 package com.cn.cnpayment.controller;
 
+import com.cn.cnpayment.entity.Order;
+import com.cn.cnpayment.entity.PaymentReview;
+import com.cn.cnpayment.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.cn.cnpayment.entity.PaymentReview;
 import com.cn.cnpayment.service.PaymentReviewService;
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/details")
 public class PaymentReviewController {
 
 	@Autowired
 	PaymentReviewService paymentReviewService;
-	
-	@PostMapping("/save")
-	public void save(@RequestBody PaymentReview review)
+
+	@GetMapping("/id/{id}")
+	public PaymentReview getPaymentReviewById(@PathVariable int id)
 	{
-		paymentReviewService.savePaymentReview(review);
+		return paymentReviewService.getPaymentReviewById(id);
 	}
 
-
+	@PostMapping("/save")
+	public void savePaymentReview(@RequestBody PaymentReview paymentReview)
+	{
+		paymentReviewService.savePaymentReview(paymentReview);
+	}
+	@DeleteMapping("/id/{id}")
+	public void delete(@PathVariable int id)
+	{
+		paymentReviewService.delete(id);
+	}
 }

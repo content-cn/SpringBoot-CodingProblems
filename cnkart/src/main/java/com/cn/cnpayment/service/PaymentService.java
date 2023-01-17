@@ -107,9 +107,9 @@ public class PaymentService {
 	public List<Payment> getAllPaymentsByQueryType(String queryType) {
 
 		ArrayList<String> validQueries = new ArrayList<String>() {{
-			add("payment_issue");
-			add("bank_issue");
-			add("merchant_issue");
+			add("PaymentIssue");
+			add("BankIssue");
+			add("MerchantIssue");
 		}};
 		Boolean isValidQueryType=false;
 		for(String validQuery : validQueries)

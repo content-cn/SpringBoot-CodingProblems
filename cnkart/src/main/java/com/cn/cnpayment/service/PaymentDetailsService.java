@@ -31,7 +31,7 @@ public class PaymentDetailsService {
 		List<PaymentDetails> paymentDetails = paymentDetailsDAL.getAllPaymentDetails();
 		if(paymentDetails==null)
 		{
-			throw new NotFoundException("No paymentDetailss found.");
+			throw new NotFoundException("No paymentDetails found.");
 		}
 		return paymentDetails;
 	}

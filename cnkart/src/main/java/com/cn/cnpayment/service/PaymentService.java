@@ -3,12 +3,12 @@ package com.cn.cnpayment.service;
 import javax.transaction.Transactional;
 import com.cn.cnpayment.dal.PaymentDAL;
 import com.cn.cnpayment.entity.PaymentReview;
+import com.cn.cnpayment.exception.ElementAlreadyExistException;
 import com.cn.cnpayment.exception.InvalidInputException;
 import com.cn.cnpayment.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;;
 import com.cn.cnpayment.entity.Payment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,11 +64,12 @@ public class PaymentService {
 	@Transactional
 	public List<Payment> getPaymentByDescriptionKeyword(String keyword) {
 
-		List<Payment> payment = paymentDAL.getByPaymentDescription(keyword);
-		if(payment==null)
+		List<Payment> payments = paymentDAL.getByPaymentDescription(keyword);
+		if(payments==null)
 		{
 			throw new NotFoundException("No payments found, with description having keyword: "+keyword);
 		}
+		return payments;
 	}
 
 	@Transactional
@@ -145,15 +146,7 @@ public class PaymentService {
 
 	@Transactional
 	public List<PaymentReview> getPaymentReviews(int paymentId) {
-
-		try {
-			List<PaymentReview> paymentReviews = paymentDAL.getPaymentReviews(paymentId);
-
-		}
-		catch(NotFoundException)
-		{
-
-		}
+		List<PaymentReview> paymentReviews = paymentDAL.getPaymentReviews(paymentId);
 		if(paymentReviews==null)
 		{
 			throw new NotFoundException("No payment Reviews found for payment having paymentId: "+paymentId);
@@ -162,27 +155,33 @@ public class PaymentService {
 	}
 
 	@Transactional
-	public Payment savePayment(Payment Payment) {
+	public Payment savePayment(Payment newPayment) {
 
-		return paymentDAL.save(Payment);
+		List<Payment> allPayments = getAllPayments();
+		for(Payment payment : allPayments)
+		{
+			if(payment.getId()==newPayment.getId())
+			{
+				throw new ElementAlreadyExistException("This payment already exist.");
+			}
+		}
+		return paymentDAL.save(newPayment);
 	}
 
 	@Transactional
 	public void update(Payment updatePayment) {
-
-		paymentDAL.update(updatePayment);
+		 paymentDAL.update(updatePayment);
 	}
 
 	@Transactional
 	public void updateDescription(int id, String description) {
-
 		paymentDAL.updateDescription(id,description);
 	}
 
 	@Transactional
 	public void delete(int id) {
 		paymentDAL.delete(id);
-
 	}
 
 }
+

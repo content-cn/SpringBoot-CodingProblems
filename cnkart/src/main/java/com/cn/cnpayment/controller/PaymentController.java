@@ -21,7 +21,6 @@ public class PaymentController {
 	@Autowired
 	PaymentService paymentService;
 
-//	Done
 	@GetMapping("/id/{id}")
 	public Payment getPaymentById(@PathVariable int id)
 	{

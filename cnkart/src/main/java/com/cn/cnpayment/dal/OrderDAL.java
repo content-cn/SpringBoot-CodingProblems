@@ -1,6 +1,7 @@
 package com.cn.cnpayment.dal;
 
 import com.cn.cnpayment.entity.Order;
+import java.util.List;
 
 public interface OrderDAL {
 
@@ -10,4 +11,5 @@ public interface OrderDAL {
 
     void delete(int id);
 
+    List<Order> getAllOrders();
 }

@@ -23,8 +23,8 @@ public class PaymentDALImpl implements PaymentDAL{
 	@Override
 	public Payment getById(int id) {
 		Session session = entityManager.unwrap(Session.class);
-		Payment Payment = session.get(Payment.class, id);
-		return Payment;
+		Payment payment = session.get(Payment.class, id);
+		return payment;
 	}
 
 	@Override

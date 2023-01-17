@@ -15,7 +15,7 @@ public class PaymentReviewController {
 	@PostMapping("/save")
 	public void save(@RequestBody PaymentReview review)
 	{
-		paymentReviewService.save(review);
+		paymentReviewService.savePaymentReview(review);
 	}
 
 

@@ -1,6 +1,5 @@
 package com.cn.cnpayment.controller;
 
-import com.cn.cnpayment.entity.PaymentReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +32,6 @@ public class PaymentController {
 		return paymentService.getAllPayments();
 	}
 
-	@GetMapping("/reviews/{paymentId}")
-	public List<PaymentReview> getPaymentReviews(@PathVariable int paymentId)
-	{
-		return paymentService.getPaymentReviews(paymentId);
-	}
-
 	@GetMapping("/paymentType/{paymentType}")
 	public List<Payment> getPaymentByPaymentType(@PathVariable String paymentType)
 	{
@@ -55,12 +48,6 @@ public class PaymentController {
 	public List<Payment> getPaymentsByCurrency(@PathVariable String currency)
 	{
 		return paymentService.getAllPaymentsByCurrency(currency);
-	}
-
-	@GetMapping("/queryType/{queryType}")
-	public List<Payment> getPaymentsByQueryType(@PathVariable String queryType)
-	{
-		return paymentService.getAllPaymentsByQueryType(queryType);
 	}
 
 	@PostMapping("/save")

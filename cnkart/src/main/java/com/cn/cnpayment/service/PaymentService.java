@@ -2,7 +2,6 @@ package com.cn.cnpayment.service;
 
 import javax.transaction.Transactional;
 import com.cn.cnpayment.dal.PaymentDAL;
-import com.cn.cnpayment.entity.PaymentReview;
 import com.cn.cnpayment.exception.ElementAlreadyExistException;
 import com.cn.cnpayment.exception.InvalidInputException;
 import com.cn.cnpayment.exception.NotFoundException;
@@ -104,36 +103,6 @@ public class PaymentService {
 	}
 
 	@Transactional
-	public List<Payment> getAllPaymentsByQueryType(String queryType) {
-
-		ArrayList<String> validQueries = new ArrayList<String>() {{
-			add("PaymentIssue");
-			add("BankIssue");
-			add("MerchantIssue");
-		}};
-		Boolean isValidQueryType=false;
-		for(String validQuery : validQueries)
-		{
-			if(validQuery.equalsIgnoreCase(queryType))
-			{
-				isValidQueryType=true;
-				break;
-			}
-		}
-		if(isValidQueryType==false)
-		{
-			throw new InvalidInputException("QueryType "+ queryType + "is invalid.");
-		}
-		List<Payment> payment = paymentDAL.getAllPaymentsByQueryType(queryType);
-
-		if(payment==null)
-		{
-			throw new NotFoundException("No payments found with reviews having queryType : "+queryType);
-		}
-		return payment;
-	}
-
-	@Transactional
 	public List<Payment> getAllPayments() {
 
 		List<Payment> payment = paymentDAL.getAllPayments();
@@ -142,16 +111,6 @@ public class PaymentService {
 			throw new NotFoundException("No payments found.");
 		}
 		return payment;
-	}
-
-	@Transactional
-	public List<PaymentReview> getPaymentReviews(int paymentId) {
-		List<PaymentReview> paymentReviews = paymentDAL.getPaymentReviews(paymentId);
-		if(paymentReviews==null)
-		{
-			throw new NotFoundException("No payment Reviews found for payment having paymentId: "+paymentId);
-		}
-		return paymentReviews;
 	}
 
 	@Transactional

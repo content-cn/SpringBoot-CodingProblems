@@ -1,8 +1,7 @@
 package com.cn.cnpayment.dal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import com.cn.cnpayment.entity.PaymentReview;
+
 import com.cn.cnpayment.service.PaymentService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,28 +73,6 @@ public class PaymentDALImpl implements PaymentDAL{
 			}
 		}
 		return paymentsByCurrency;
-	}
-	public List<Payment> getAllPaymentsByQueryType(String queryType) {
-		List<Payment> allPayments=paymentService.getAllPayments();
-		List<Payment> paymentsByReviews = new ArrayList<>();
-		for(Payment payment : allPayments)
-		{
-			for(PaymentReview paymentReview : payment.getPaymentReviews())
-			{
-				if(paymentReview.getQueryType().equalsIgnoreCase(queryType))
-				{
-					paymentsByReviews.add(payment);
-					break;
-				}
-			}
-		}
-		return paymentsByReviews;
-	}
-
-	public List<PaymentReview> getPaymentReviews(Integer paymentId){
-		Payment payment = paymentService.getPaymentById(paymentId);
-		List<PaymentReview> paymentReviews=payment.getPaymentReviews();
-		return paymentReviews;
 	}
 
 	@Override

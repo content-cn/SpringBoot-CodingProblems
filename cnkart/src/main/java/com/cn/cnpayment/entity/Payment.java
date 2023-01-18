@@ -26,9 +26,6 @@ public class Payment {
 	@OneToMany(fetch = FetchType.EAGER,mappedBy= "payment",cascade = CascadeType.ALL)
 	private List<PaymentReview> paymentReviews;
 
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "payments")
-	Set<Order> paymentOrders;
-
 	public int getId() {
 		return id;
 	}
@@ -63,14 +60,6 @@ public class Payment {
 
 	public void setPaymentReviews(List<PaymentReview> paymentReviews) {
 		this.paymentReviews = paymentReviews;
-	}
-
-	public Set<Order> getPaymentOrders() {
-		return paymentOrders;
-	}
-
-	public void setPaymentOrders(Set<Order> paymentOrders) {
-		this.paymentOrders = paymentOrders;
 	}
 
 	@Override

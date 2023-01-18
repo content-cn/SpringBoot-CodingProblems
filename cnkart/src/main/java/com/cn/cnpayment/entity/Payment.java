@@ -20,15 +20,6 @@ public class Payment {
 	@Column
 	private String description;
 
-	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	private PaymentDetails paymentDetails;
-
-	@OneToMany(fetch = FetchType.EAGER,mappedBy= "payment",cascade = CascadeType.ALL)
-	private List<PaymentReview> paymentReviews;
-
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "payments")
-	Set<Order> paymentOrders;
-
 	public int getId() {
 		return id;
 	}
@@ -47,30 +38,6 @@ public class Payment {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public PaymentDetails getPaymentDetails() {
-		return paymentDetails;
-	}
-
-	public void setPaymentDetails(PaymentDetails paymentDetails) {
-		this.paymentDetails = paymentDetails;
-	}
-
-	public List<PaymentReview> getPaymentReviews() {
-		return paymentReviews;
-	}
-
-	public void setPaymentReviews(List<PaymentReview> paymentReviews) {
-		this.paymentReviews = paymentReviews;
-	}
-
-	public Set<Order> getPaymentOrders() {
-		return paymentOrders;
-	}
-
-	public void setPaymentOrders(Set<Order> paymentOrders) {
-		this.paymentOrders = paymentOrders;
 	}
 
 	@Override

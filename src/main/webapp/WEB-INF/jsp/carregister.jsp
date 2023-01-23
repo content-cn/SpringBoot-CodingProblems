@@ -13,7 +13,7 @@ Car Name<form:select path="CarName">
     </form:select>
     <br/>
     <br/>
-    Covered In Warrenty:
+    Covered In Warranty:
     <form:select path="CarDetails">
         <form:option value="YES"></form:option>
         <form:option value="NO"></form:option>

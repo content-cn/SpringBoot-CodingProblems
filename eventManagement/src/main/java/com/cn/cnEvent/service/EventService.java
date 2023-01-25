@@ -38,6 +38,7 @@ public class EventService {
 		eventDAL.update(updateEvent);
 	}
 
+	@Transactional
 	public List<Event> getAllEvents() {
 		return eventDAL.getAllEvents();
 	}

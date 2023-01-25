@@ -1,7 +1,5 @@
 package com.cn.cnEvent.entity;
 
-import java.util.List;
-
 public class Event {
 
 	private Long id;

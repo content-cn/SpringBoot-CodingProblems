@@ -28,7 +28,7 @@ public class EventController {
 		return eventService.getEventById(id);
 	}
 
-	@GetMapping("/allPayments")
+	@GetMapping("/allEvents")
 	public List<Event> getAllEvents()
 	{
 		return eventService.getAllEvents();

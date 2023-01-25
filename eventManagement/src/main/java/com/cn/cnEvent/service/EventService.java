@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.cn.cnEvent.dal.EventDAL;
 import com.cn.cnEvent.entity.Event;
 
+import java.util.List;
+
 @Service
 public class EventService {
 
@@ -33,8 +35,10 @@ public class EventService {
 
 	@Transactional
 	public void update(Event updateEvent) {
-	
 		eventDAL.update(updateEvent);
 	}
-	
+
+	public List<Event> getAllEvents() {
+		return eventDAL.getAllEvents();
+	}
 }

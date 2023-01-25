@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cn.cnEvent.entity.Event;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/event")
 public class EventController {
@@ -24,6 +26,12 @@ public class EventController {
 	public Event getEventById(@PathVariable int id)
 	{
 		return eventService.getEventById(id);
+	}
+
+	@GetMapping("/allPayments")
+	public List<Event> getAllEvents()
+	{
+		return eventService.getAllEvents();
 	}
 	
 	@PostMapping("/save")
@@ -43,5 +51,5 @@ public class EventController {
 	{
 		eventService.update(updateEvent);
 	}
-	
+
 }

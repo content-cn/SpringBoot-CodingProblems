@@ -2,6 +2,8 @@ package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Event;
 
+import java.util.List;
+
 public interface EventDAL {
 
 	Event getById(int id);
@@ -12,4 +14,5 @@ public interface EventDAL {
 
 	void update(Event updateEvent);
 
+	List<Event> getAllEvents();
 }

@@ -1,7 +1,5 @@
 package com.cn.cnEvent.entity;
 
-import javax.persistence.*;
-
 public class Ticket {
 
     private Long id;

@@ -1,6 +1,5 @@
 package com.cn.cnEvent.entity;
 
-import javax.persistence.*;
 import java.util.List;
 
 public class Speaker {

@@ -10,12 +10,6 @@ public class Event {
 
 	private String description;
 
-	private EventScheduleDetails eventScheduleDetails;
-
-	private List<Ticket> tickets;
-
-	private List<Speaker> speakers;
-
 	public Long getId() {
 		return id;
 	}
@@ -38,30 +32,6 @@ public class Event {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public EventScheduleDetails getEventScheduleDetails() {
-		return eventScheduleDetails;
-	}
-
-	public void setEventScheduleDetails(EventScheduleDetails eventScheduleDetails) {
-		this.eventScheduleDetails = eventScheduleDetails;
-	}
-
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
-	}
-
-	public List<Speaker> getSpeakers() {
-		return speakers;
-	}
-
-	public void setSpeakers(List<Speaker> speakers) {
-		this.speakers = speakers;
 	}
 }
 

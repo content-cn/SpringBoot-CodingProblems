@@ -12,8 +12,4 @@ public interface EventDAL {
 
 	List<Event> getAllEvents();
 
-	void delete(int id);
-
-	void update(Event updateEvent);
-
 }

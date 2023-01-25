@@ -4,24 +4,16 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "event_schedule")
 public class EventScheduleDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(name = "start_time")
     private LocalDateTime startTime;
 
-    @Column(name = "end_time")
     private LocalDateTime endTime;
 
-    @Column(name = "location")
     private String location;
 
-    @OneToOne
-    @JoinColumn(name = "event_id")
     private Event event;
 
     public Long getId() {

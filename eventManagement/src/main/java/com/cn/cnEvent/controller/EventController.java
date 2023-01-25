@@ -13,35 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cn.cnEvent.entity.Event;
 
-@RestController
-@RequestMapping("/event")
 public class EventController {
 
-	@Autowired
-	EventService eventService;
-	
-	@GetMapping("/id/{id}")
-	public Event getEventById(@PathVariable int id)
-	{
-		return eventService.getEventById(id);
-	}
-	
-	@PostMapping("/save")
-	public void saveEvent(@RequestBody Event event)
-	{
-		eventService.saveEvent(event);
-	}
-	
-	@DeleteMapping("/delete/id/{id}")
-	public void deleteEvent(@PathVariable int id)
-	{
-		eventService.delete(id);
+	public Event getEventById(@PathVariable int id) {
+
 	}
 
-	@PutMapping("/update")
-	public void updateEvent(@RequestBody Event updateEvent)
-	{
-		eventService.update(updateEvent);
+	public void saveEvent(@RequestBody Event event) {
+
+	}
+
+	public void deleteEvent(@PathVariable int id) {
+
+	}
+
+	public void updateEvent(@RequestBody Event updateEvent){
+
 	}
 	
 }

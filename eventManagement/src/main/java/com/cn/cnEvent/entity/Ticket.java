@@ -2,25 +2,16 @@ package com.cn.cnEvent.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "ticket")
 public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "price")
     private String price;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id")
     private Event event;
 
-    @OneToOne
-    @JoinColumn(name = "attender_id")
     private Attender attender;
 
     public Long getId() {

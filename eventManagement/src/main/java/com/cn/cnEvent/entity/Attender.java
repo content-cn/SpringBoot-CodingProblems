@@ -3,17 +3,12 @@ package com.cn.cnEvent.entity;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name="attender")
 public class Attender {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "attender")
     private Ticket ticket;
 
     public Long getId() {
@@ -31,7 +26,6 @@ public class Attender {
     public void setName(String name) {
         this.name = name;
     }
-
     public Ticket getTicket() {
         return ticket;
     }

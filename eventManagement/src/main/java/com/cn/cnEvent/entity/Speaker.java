@@ -13,7 +13,7 @@ public class Speaker {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "speakers")
+    @ManyToMany
     private List<Event> events;
 
     public String getName() {

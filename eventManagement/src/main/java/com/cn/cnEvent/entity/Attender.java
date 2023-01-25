@@ -13,8 +13,8 @@ public class Attender {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "attender")
-    private List<Ticket> tickets;
+    @OneToOne(mappedBy = "attender")
+    private Ticket ticket;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class Attender {
         this.name = name;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }

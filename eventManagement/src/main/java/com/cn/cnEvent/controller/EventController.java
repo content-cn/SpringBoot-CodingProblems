@@ -15,25 +15,33 @@ import com.cn.cnEvent.entity.Event;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/event")
 public class EventController {
 
+	/*
+	 1. Call the required service method.
+	 2. Add proper annotations for Get Mapping and attaching the
+	Path Variable to the method parameter.
+	*/
 	public Event getEventById(@PathVariable int id) {
 
 	}
 
+	/*
+	 1. Call the required service method
+	 2. Add proper annotations for Get Mapping.
+	 */
 	public List<Event> getAllEvents() {
 
 	}
 
+	/*
+	 1. Call the required service method
+	 2. Add proper annotations for Post Mapping and attaching the
+	 RequestBody.
+	 */
 	public void saveEvent(@RequestBody Event event) {
-
-	}
-
-	public void deleteEvent(@PathVariable int id) {
-
-	}
-
-	public void updateEvent(@RequestBody Event updateEvent){
 
 	}
 	

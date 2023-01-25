@@ -10,7 +10,7 @@ public interface EventDAL {
 
 	void save(Event item);
 
-	List<Event> getAll();
+	List<Event> getAllEvents();
 
 	void delete(int id);
 

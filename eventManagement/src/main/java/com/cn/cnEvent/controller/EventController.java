@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cn.cnEvent.entity.Event;
 
+import java.util.List;
+
 public class EventController {
 
 	public Event getEventById(@PathVariable int id) {
+
+	}
+
+	public List<Event> getAllEvents() {
 
 	}
 

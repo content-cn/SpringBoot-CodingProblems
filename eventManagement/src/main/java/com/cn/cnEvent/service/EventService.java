@@ -8,9 +8,15 @@ import org.springframework.stereotype.Service;
 import com.cn.cnEvent.dal.EventDAL;
 import com.cn.cnEvent.entity.Event;
 
+import java.util.List;
+
 public class EventService {
 
 	public Event getEventById(int id) {
+
+	}
+
+	public List<Event> getAllEvents(){
 
 	}
 

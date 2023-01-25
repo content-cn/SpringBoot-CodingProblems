@@ -28,17 +28,17 @@ public class EventService {
 	}
 
 	@Transactional
+	public List<Event> getAllEvents() {
+		return eventDAL.getAllEvents();
+	}
+
+	//Complete the method body to delete a event by id.
 	public void delete(int id) {
-		eventDAL.delete(id);
 		
 	}
 
-	@Transactional
+	//Complete the method body to update an existing event.
 	public void update(Event updateEvent) {
-		eventDAL.update(updateEvent);
-	}
 
-	public List<Event> getAllEvents() {
-		return eventDAL.getAllEvents();
 	}
 }

@@ -36,22 +36,4 @@ public class EventDALImpl implements EventDAL {
 		Session session = entityManager.unwrap(Session.class);
 		session.save(event);
 	}
-
-	@Override
-	public void delete(int id) {
-		Session session = entityManager.unwrap(Session.class);
-		Event event = session.get(Event.class, id);
-		session.delete(event);
-		
-	}
-
-	@Override
-	public void update(Event updateEvent) {
-		Session session = entityManager.unwrap(Session.class);
-		Event currentEvent = session.get(Event.class, updateEvent.getId());
-		currentEvent.setName(updateEvent.getName());
-		session.update(currentEvent);
-		
-	}
-	
 }

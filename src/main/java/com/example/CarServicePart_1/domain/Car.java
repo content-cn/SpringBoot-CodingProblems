@@ -1,13 +1,11 @@
-package com.example.CarService.domain;
+package com.example.CarServicePart_1.domain;
 
-import com.example.CarService.repository.DAO;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class Car implements Vehicle {
-    @Autowired
-    DAO<Car> carDAO;
+
     String RegisterationNumber;
     String CarName;
     String CarDetails;
@@ -58,16 +56,8 @@ public class Car implements Vehicle {
 
     @Override
     public Boolean saveVehicleDetails() {
-       //System.out.println(RegisterationNumber);
-
-        if(RegisterationNumber!=null && CarName!=null && CarDetails!=null){
-            carDAO.save(this);
-            System.out.println("new car added"+this.CarName+"  "+this.RegisterationNumber+this.CarDetails);
-            return true;
-        }
-        else {
-            return false;
-        }
+       System.out.println("saved");
+        return true;
     }
 
     @Override

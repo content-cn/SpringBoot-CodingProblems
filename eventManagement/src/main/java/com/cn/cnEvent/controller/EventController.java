@@ -1,17 +1,10 @@
-package com.cn.cnEvent.controller;
-
-import com.cn.cnEvent.service.EventService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+ package com.cn.cnEvent.controller;
 
 import com.cn.cnEvent.entity.Event;
+import com.cn.cnEvent.entity.EventScheduleDetail;
+import com.cn.cnEvent.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,9 +14,9 @@ public class EventController {
 
 	@Autowired
 	EventService eventService;
-	
+
 	@GetMapping("/id/{id}")
-	public Event getEventById(@PathVariable int id)
+	public Event getEventById(@PathVariable Long id)
 	{
 		return eventService.getEventById(id);
 	}
@@ -33,17 +26,35 @@ public class EventController {
 	{
 		return eventService.getAllEvents();
 	}
+
+	@GetMapping("/allEvents/location/{location}")
+	public List<Event> getAllEventsByLocation(@PathVariable String location)
+	{
+		return eventService.getAllEventsByLocation(location);
+	}
+
+	@GetMapping("/id/{id}/eventScheduleDetail")
+	public EventScheduleDetail getEventScheduleDetailByEventId(@PathVariable Long id)
+	{
+		return eventService.getEventScheduleDetailByEventId(id);
+	}
 	
 	@PostMapping("/save")
-	public void saveEvent(@RequestBody Event event)
+	public  String saveEvent(@RequestBody Event event)
 	{
-		eventService.saveEvent(event);
+		return eventService.saveEvent(event);
 	}
 	
 	@DeleteMapping("/delete/id/{id}")
-	public void deleteEvent(@PathVariable int id)
+	public String deleteEvent(@PathVariable Long id)
 	{
-		eventService.delete(id);
+		return eventService.delete(id);
+	}
+
+	@DeleteMapping("/deleteEventScheduleDetail/id/{id}")
+	public String deleteEventScheduleDetail(@PathVariable Long id)
+	{
+		return eventService.deleteEventScheduleDetail(id);
 	}
 
 	@PutMapping("/update")

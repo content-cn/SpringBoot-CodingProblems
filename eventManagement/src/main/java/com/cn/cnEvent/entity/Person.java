@@ -1,11 +1,10 @@
 package com.cn.cnEvent.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="attender")
-public class Attender {
+@Table(name="person")
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,7 +12,10 @@ public class Attender {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "attender")
+    @Column(name = "age")
+    private Long age;
+
+    @OneToOne(mappedBy = "person")
     private Ticket ticket;
 
     public Long getId() {
@@ -30,6 +32,14 @@ public class Attender {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getAge() {
+        return age;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
     }
 
     public Ticket getTicket() {

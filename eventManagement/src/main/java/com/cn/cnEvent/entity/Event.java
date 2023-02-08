@@ -17,7 +17,7 @@ public class Event {
 	private String description;
 
 	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
-	private EventScheduleDetails eventScheduleDetails;
+	private EventScheduleDetail eventScheduleDetail;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Ticket> tickets;
@@ -52,12 +52,12 @@ public class Event {
 		this.description = description;
 	}
 
-	public EventScheduleDetails getEventScheduleDetails() {
-		return eventScheduleDetails;
+	public EventScheduleDetail getEventScheduleDetail() {
+		return eventScheduleDetail;
 	}
 
-	public void setEventScheduleDetails(EventScheduleDetails eventScheduleDetails) {
-		this.eventScheduleDetails = eventScheduleDetails;
+	public void setEventScheduleDetail(EventScheduleDetail eventScheduleDetail) {
+		this.eventScheduleDetail = eventScheduleDetail;
 	}
 
 	public List<Ticket> getTickets() {

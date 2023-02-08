@@ -2,11 +2,10 @@ package com.cn.cnEvent.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "event_schedule")
-public class EventScheduleDetails {
+public class EventScheduleDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -54,13 +53,5 @@ public class EventScheduleDetails {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
     }
 }

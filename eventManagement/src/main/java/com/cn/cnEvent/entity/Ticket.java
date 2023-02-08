@@ -13,15 +13,15 @@ public class Ticket {
     private String name;
 
     @Column(name = "price")
-    private String price;
+    private Long price;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @OneToOne
-    @JoinColumn(name = "attender_id")
-    private Attender attender;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class Ticket {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
@@ -55,11 +55,11 @@ public class Ticket {
         this.event = event;
     }
 
-    public Attender getAttender() {
-        return attender;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setAttender(Attender attender) {
-        this.attender = attender;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

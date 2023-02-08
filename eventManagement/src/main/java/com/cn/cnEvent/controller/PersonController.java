@@ -1,0 +1,46 @@
+package com.cn.cnEvent.controller;
+
+import com.cn.cnEvent.entity.Person;
+import com.cn.cnEvent.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/person")
+public class PersonController {
+
+    @Autowired
+    PersonService personService;
+
+    @GetMapping("/id/{id}")
+    public Person getPersonById(@PathVariable Long id)
+    {
+        return personService.getPersonById(id);
+    }
+
+    @GetMapping("/allPersons")
+    public List<Person> getAllPersons()
+    {
+        return personService.getAllPersons();
+    }
+
+    @PostMapping("/save")
+    public  String savePerson(@RequestBody Person person)
+    {
+        return personService.savePerson(person);
+    }
+
+    @DeleteMapping("/delete/id/{id}")
+    public String deletePerson(@PathVariable Long id)
+    {
+        return personService.delete(id);
+    }
+
+    @PutMapping("/update")
+    public void updatePerson(@RequestBody Person updatePerson)
+    {
+        personService.update(updatePerson);
+    }
+}

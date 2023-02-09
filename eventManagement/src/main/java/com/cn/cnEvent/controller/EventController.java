@@ -45,7 +45,8 @@ public class EventController {
 	{
 		return eventService.getAllTicketsOfEvent(id);
 	}
-	@GetMapping("/id/{id}/allTickets")
+
+	@GetMapping("/allTickets/priceGreaterThan/{price}")
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(@PathVariable Long price)
 	{
 		return eventService.getAllEventsHavingTicketPriceGreaterThan(price);

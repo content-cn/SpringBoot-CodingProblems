@@ -24,19 +24,4 @@ public class PersonService {
 		return personDAL.getAllPersons();
 	}
 
-	@Transactional
-	public String savePerson(Person person) {
-		return personDAL.save(person);
-	}
-
-	@Transactional
-	public String delete(Long id) {
-		return personDAL.delete(id);
-	}
-
-	@Transactional
-	public void update(Person updatePerson) {
-		personDAL.update(updatePerson);
-	}
-
 }

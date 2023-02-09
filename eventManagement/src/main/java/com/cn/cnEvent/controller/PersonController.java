@@ -25,22 +25,4 @@ public class PersonController {
     {
         return personService.getAllPersons();
     }
-
-    @PostMapping("/save")
-    public  String savePerson(@RequestBody Person person)
-    {
-        return personService.savePerson(person);
-    }
-
-    @DeleteMapping("/delete/id/{id}")
-    public String deletePerson(@PathVariable Long id)
-    {
-        return personService.delete(id);
-    }
-
-    @PutMapping("/update")
-    public void updatePerson(@RequestBody Person updatePerson)
-    {
-        personService.update(updatePerson);
-    }
 }

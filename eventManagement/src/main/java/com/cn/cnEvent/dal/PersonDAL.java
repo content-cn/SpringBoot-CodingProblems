@@ -9,10 +9,4 @@ public interface PersonDAL {
 	Person getById(Long id);
 
 	List<Person> getAllPersons();
-
-	String save(Person item);
-
-	String delete(Long id);
-
-	void update(Person updatePerson);
 }

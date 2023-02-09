@@ -1,7 +1,6 @@
 package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Ticket;
-import com.cn.cnEvent.service.TicketService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,9 +14,6 @@ public class TicketDALImpl implements TicketDAL {
 
 	@Autowired
 	EntityManager entityManager;
-
-	@Autowired
-	TicketService ticketService;
 	
 	@Override
 	public Ticket getById(Long id) {
@@ -37,7 +33,7 @@ public class TicketDALImpl implements TicketDAL {
 	@Override
 	public List<Ticket> getAllTicketsByAge(Long age){
 		Session session = entityManager.unwrap(Session.class);
-		List<Ticket> allTickets=ticketService.getAllTickets();
+		List<Ticket> allTickets=getAllTickets();
 		List<Ticket> allTicketsByAge= new ArrayList<>();
 
 		for(Ticket ticket : allTickets)

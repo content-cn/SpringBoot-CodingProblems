@@ -28,30 +28,4 @@ public class PersonDALImpl implements PersonDAL {
 				"SELECT e FROM Person e", Person.class).getResultList();
 		return allPersons;
 	}
-	
-
-	@Override
-	public String save(Person person) {
-		Session session = entityManager.unwrap(Session.class);
-		session.save(person);
-		return "The person was saved successfully.";
-	}
-
-	@Override
-	public String delete(Long id) {
-		Session session = entityManager.unwrap(Session.class);
-		Person person = session.get(Person.class, id);
-		session.delete(person);
-		return "The person was deleted successfully";
-	}
-	
-
-	@Override
-	public void update(Person updatePerson) {
-		Session session = entityManager.unwrap(Session.class);
-		Person currentPerson = session.get(Person.class, updatePerson.getId());
-		currentPerson.setName(updatePerson.getName());
-		session.update(currentPerson);
-	}
-	
 }

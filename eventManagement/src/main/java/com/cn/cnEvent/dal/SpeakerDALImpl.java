@@ -1,7 +1,6 @@
 package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Speaker;
-import com.cn.cnEvent.service.SpeakerService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,9 +14,6 @@ public class SpeakerDALImpl implements SpeakerDAL {
 
 	@Autowired
 	EntityManager entityManager;
-
-	@Autowired
-	SpeakerService speakerService;
 	
 	@Override
 	public Speaker getById(Long id) {
@@ -37,7 +33,7 @@ public class SpeakerDALImpl implements SpeakerDAL {
 	@Override
 	public List<Speaker> getAllSpeakersByEventCount(Long eventCount){
 
-		List<Speaker> allSpeakers=speakerService.getAllSpeakers();
+		List<Speaker> allSpeakers=getAllSpeakers();
 		List<Speaker> allSpeakersByEventCount=new ArrayList<>();
 		for(Speaker speaker: allSpeakers)
 		{

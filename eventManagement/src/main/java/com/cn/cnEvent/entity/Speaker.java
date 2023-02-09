@@ -14,7 +14,7 @@ public class Speaker {
     private String name;
 
     @Column(name = "experience")
-    private String experience;
+    private Long experience;
 
     @ManyToMany
     private List<Event> events;
@@ -35,11 +35,11 @@ public class Speaker {
         this.name = name;
     }
 
-    public String getExperience() {
+    public Long getExperience() {
         return experience;
     }
 
-    public void setExperience(String experience) {
+    public void setExperience(Long experience) {
         this.experience = experience;
     }
 

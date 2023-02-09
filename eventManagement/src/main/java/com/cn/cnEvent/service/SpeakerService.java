@@ -25,6 +25,11 @@ public class SpeakerService {
 	}
 
 	@Transactional
+	public List<Speaker> getAllSpeakersByEventCount(Long eventCount) {
+		return speakerDAL.getAllSpeakersByEventCount(eventCount);
+	}
+
+	@Transactional
 	public String saveSpeaker(Speaker speaker) {
 		return speakerDAL.save(speaker);
 	}

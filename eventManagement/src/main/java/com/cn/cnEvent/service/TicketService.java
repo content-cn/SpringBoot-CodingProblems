@@ -25,6 +25,11 @@ public class TicketService {
 	}
 
 	@Transactional
+	public List<Ticket> getAllTicketsByAge(Long age) {
+		return ticketDAL.getAllTicketsByAge(age);
+	}
+
+	@Transactional
 	public String saveTicket(Ticket ticket) {
 		return ticketDAL.save(ticket);
 	}
@@ -38,5 +43,4 @@ public class TicketService {
 	public void update(Ticket updateTicket) {
 		ticketDAL.update(updateTicket);
 	}
-
 }

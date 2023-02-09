@@ -2,9 +2,11 @@ package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.EventScheduleDetail;
+import com.cn.cnEvent.service.EventService;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import com.cn.cnEvent.entity.Ticket;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -15,7 +17,10 @@ public class EventDALImpl implements EventDAL {
 
 	@Autowired
 	EntityManager entityManager;
-	
+
+	@Autowired
+	EventService eventService;
+
 	@Override
 	public Event getById(Long id) {
 		Session session = entityManager.unwrap(Session.class);
@@ -48,10 +53,37 @@ public class EventDALImpl implements EventDAL {
 		return eventsByLocation;
 	}
 
+	@Override
 	public EventScheduleDetail getEventScheduleDetailByEventId(Long id){
 		Session session = entityManager.unwrap(Session.class);
 		Event event = session.get(Event.class, id);
 		return event.getEventScheduleDetail();
+	}
+
+	@Override
+	public List<Ticket> getAllTicketsOfEvent(Long id){
+		Event event = eventService.getEventById(id);
+		return event.getTickets();
+	}
+
+	@Override
+	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price){
+		Session session = entityManager.unwrap(Session.class);
+		List<Event> allEvents= eventService.getAllEvents();
+
+		List<Event> eventsByPrice = new ArrayList<>();
+		for(Event event : allEvents)
+		{
+			for(Ticket ticket : event.getTickets())
+			{
+				if(ticket.getPrice()>1000)
+				{
+					eventsByPrice.add(event);
+					break;
+				}
+			}
+		}
+		return eventsByPrice;
 	}
 
 	@Override

@@ -26,6 +26,12 @@ public class SpeakerController {
         return speakerService.getAllSpeakers();
     }
 
+    @GetMapping("allSpeakers/eventCount/{eventCount}")
+    public List<Speaker> getAllSpeakersByEventCount(@PathVariable Long eventCount)
+    {
+        return speakerService.getAllSpeakersByEventCount(eventCount);
+    }
+
     @PostMapping("/save")
     public  String saveSpeaker(@RequestBody Speaker speaker)
     {

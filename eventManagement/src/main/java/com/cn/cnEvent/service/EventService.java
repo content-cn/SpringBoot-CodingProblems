@@ -5,6 +5,7 @@ import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.EventScheduleDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.cn.cnEvent.entity.Ticket;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -34,6 +35,15 @@ public class EventService {
 		return eventDAL.getEventScheduleDetailByEventId(id);
 	}
 
+	public List<Ticket> getAllTicketsOfEvent(Long id) {
+		return eventDAL.getAllTicketsOfEvent(id);
+	}
+
+	@Transactional
+	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price) {
+		return eventDAL.getAllEventsHavingTicketPriceGreaterThan(price);
+	}
+
 	@Transactional
 	public String saveEvent(Event event) {
 		return eventDAL.save(event);
@@ -53,5 +63,4 @@ public class EventService {
 	public void update(Event updateEvent) {
 		eventDAL.update(updateEvent);
 	}
-
 }

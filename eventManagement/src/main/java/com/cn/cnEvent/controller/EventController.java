@@ -1,12 +1,13 @@
  package com.cn.cnEvent.controller;
 
-import com.cn.cnEvent.entity.Event;
-import com.cn.cnEvent.entity.EventScheduleDetail;
-import com.cn.cnEvent.service.EventService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+ import com.cn.cnEvent.entity.Event;
+ import com.cn.cnEvent.entity.EventScheduleDetail;
+ import com.cn.cnEvent.service.EventService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.web.bind.annotation.*;
+ import com.cn.cnEvent.entity.Ticket;
 
-import java.util.List;
+ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
@@ -37,6 +38,17 @@ public class EventController {
 	public EventScheduleDetail getEventScheduleDetailByEventId(@PathVariable Long id)
 	{
 		return eventService.getEventScheduleDetailByEventId(id);
+	}
+
+	@GetMapping("/id/{id}/allTickets")
+	public List<Ticket> getAllTicketsOfEvent(@PathVariable Long id)
+	{
+		return eventService.getAllTicketsOfEvent(id);
+	}
+	@GetMapping("/id/{id}/allTickets")
+	public List<Event> getAllEventsHavingTicketPriceGreaterThan(@PathVariable Long price)
+	{
+		return eventService.getAllEventsHavingTicketPriceGreaterThan(price);
 	}
 	
 	@PostMapping("/save")

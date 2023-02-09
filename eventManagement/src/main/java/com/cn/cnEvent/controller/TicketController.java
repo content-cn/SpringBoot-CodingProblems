@@ -26,6 +26,10 @@ public class TicketController {
         return ticketService.getAllTickets();
     }
 
+    @GetMapping("/allTickets/age/{age}")
+    public List<Ticket> getAllTicketsByAge(Long age) {
+        return ticketService.getAllTicketsByAge(age);
+    }
     @PostMapping("/save")
     public  String saveTicket(@RequestBody Ticket ticket)
     {

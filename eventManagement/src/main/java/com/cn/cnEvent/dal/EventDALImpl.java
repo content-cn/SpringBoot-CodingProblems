@@ -66,7 +66,6 @@ public class EventDALImpl implements EventDAL {
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price){
 		Session session = entityManager.unwrap(Session.class);
 		List<Event> allEvents=getAllEvents();
-
 		List<Event> eventsByPrice = new ArrayList<>();
 		for(Event event : allEvents)
 		{
@@ -100,7 +99,6 @@ public class EventDALImpl implements EventDAL {
 	@Override
 	public String deleteEventScheduleDetail(Long id) {
 		Session session = entityManager.unwrap(Session.class);
-		System.out.println("ENTER+++++++++++++++++++");
 		EventScheduleDetail eventScheduleDetail = session.createQuery(
 				"SELECT e FROM EventScheduleDetail e where e.event.id = :id", EventScheduleDetail.class).
 				setParameter("id",id).getSingleResult();

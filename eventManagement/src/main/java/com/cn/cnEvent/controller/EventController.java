@@ -19,7 +19,8 @@ public class EventController {
 	@GetMapping("/id/{id}")
 	public Event getEventById(@PathVariable Long id)
 	{
-		return eventService.getEventById(id);
+		Event event=eventService.getEventById(id);
+		return event;
 	}
 
 	@GetMapping("/allEvents")
@@ -46,7 +47,7 @@ public class EventController {
 		return eventService.getAllTicketsOfEvent(id);
 	}
 
-	@GetMapping("/allTickets/priceGreaterThan/{price}")
+	@GetMapping("/allEvents/ticketsPriceGreaterThan/{price}")
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(@PathVariable Long price)
 	{
 		return eventService.getAllEventsHavingTicketPriceGreaterThan(price);

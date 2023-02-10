@@ -28,15 +28,4 @@ public class EventScheduleDetailService {
 	public String saveEventScheduleDetail(EventScheduleDetail eventScheduleDetail) {
 		return eventScheduleDetailDAL.save(eventScheduleDetail);
 	}
-
-	@Transactional
-	public String delete(Long id) {
-		return eventScheduleDetailDAL.delete(id);
-	}
-
-	@Transactional
-	public void update(EventScheduleDetail updateEventScheduleDetail) {
-		eventScheduleDetailDAL.update(updateEventScheduleDetail);
-	}
-
 }

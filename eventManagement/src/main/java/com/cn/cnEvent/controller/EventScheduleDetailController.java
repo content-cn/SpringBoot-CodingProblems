@@ -31,17 +31,4 @@ public class EventScheduleDetailController {
     {
         return eventScheduleDetailService.saveEventScheduleDetail(event);
     }
-
-    @DeleteMapping("/delete/id/{id}")
-    public String deleteEventScheduleDetail(@PathVariable Long id)
-    {
-        return eventScheduleDetailService.delete(id);
-    }
-
-    @PutMapping("/update")
-    public void updateEventScheduleDetail(@RequestBody EventScheduleDetail updateEventScheduleDetail)
-    {
-        eventScheduleDetailService.update(updateEventScheduleDetail);
-    }
-
 }

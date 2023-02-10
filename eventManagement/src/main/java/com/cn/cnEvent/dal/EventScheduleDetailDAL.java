@@ -11,8 +11,4 @@ public interface EventScheduleDetailDAL {
 	List<EventScheduleDetail> getAllEventScheduleDetails();
 
 	String save(EventScheduleDetail item);
-
-	String delete(Long id);
-
-	void update(EventScheduleDetail updateEvent);
 }

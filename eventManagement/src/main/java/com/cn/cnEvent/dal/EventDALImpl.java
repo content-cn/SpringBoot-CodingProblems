@@ -102,7 +102,6 @@ public class EventDALImpl implements EventDAL {
 		EventScheduleDetail eventScheduleDetail = session.createQuery(
 				"SELECT e FROM EventScheduleDetail e where e.event.id = :id", EventScheduleDetail.class).
 				setParameter("id",id).getSingleResult();
-		System.out.println(eventScheduleDetail.getId()+" "+eventScheduleDetail.getEndTime()+" "+eventScheduleDetail.getStartTime()+" dddddddd");
 		session.delete(session.get(EventScheduleDetail.class,eventScheduleDetail.getId()));
 		return "The eventSchedule was deleted successfully";
 	}

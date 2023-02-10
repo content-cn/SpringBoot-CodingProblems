@@ -36,21 +36,4 @@ public class EventScheduleDetailDALImpl implements EventScheduleDetailDAL {
 		session.save(eventScheduleDetail);
 		return "The eventScheduleDetail was saved successfully.";
 	}
-
-	@Override
-	public String delete(Long id) {
-		Session session = entityManager.unwrap(Session.class);
-		EventScheduleDetail eventScheduleDetail = session.get(EventScheduleDetail.class, id);
-		session.delete(eventScheduleDetail);
-		return "The eventScheduleDetail was deleted successfully";
-	}
-
-	@Override
-	public void update(EventScheduleDetail updateEventScheduleDetail) {
-		Session session = entityManager.unwrap(Session.class);
-		EventScheduleDetail currentEventScheduleDetail = session.get(EventScheduleDetail.class, updateEventScheduleDetail.getId());
-		session.update(currentEventScheduleDetail);
-		
-	}
-	
 }

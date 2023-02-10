@@ -45,27 +45,4 @@ public class TicketDALImpl implements TicketDAL {
 		}
 		return allTicketsByAge;
 	}
-
-	@Override
-	public String save(Ticket ticket) {
-		Session session = entityManager.unwrap(Session.class);
-		session.save(ticket);
-		return "The ticket was saved successfully.";
-	}
-
-	@Override
-	public String delete(Long id) {
-		Session session = entityManager.unwrap(Session.class);
-		Ticket ticket = session.get(Ticket.class, id);
-		session.delete(ticket);
-		return "The ticket was deleted successfully";
-	}
-	
-	@Override
-	public void update(Ticket updateTicket) {
-		Session session = entityManager.unwrap(Session.class);
-		Ticket currentTicket = session.get(Ticket.class, updateTicket.getId());
-		currentTicket.setName(updateTicket.getName());
-		session.update(currentTicket);
-	}
 }

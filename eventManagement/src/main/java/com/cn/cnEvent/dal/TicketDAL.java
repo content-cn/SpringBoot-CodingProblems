@@ -10,11 +10,5 @@ public interface TicketDAL {
 
 	List<Ticket> getAllTickets();
 
-	String save(Ticket ticket);
-
-	String delete(Long id);
-
-	void update(Ticket updateTicket);
-
     List<Ticket> getAllTicketsByAge(Long age);
 }

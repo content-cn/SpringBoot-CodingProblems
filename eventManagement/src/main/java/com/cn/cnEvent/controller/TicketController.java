@@ -30,21 +30,4 @@ public class TicketController {
     public List<Ticket> getAllTicketsByAge(Long age) {
         return ticketService.getAllTicketsByAge(age);
     }
-    @PostMapping("/save")
-    public  String saveTicket(@RequestBody Ticket ticket)
-    {
-        return ticketService.saveTicket(ticket);
-    }
-
-    @DeleteMapping("/delete/id/{id}")
-    public String deleteTicket(@PathVariable Long id)
-    {
-        return ticketService.delete(id);
-    }
-
-    @PutMapping("/update")
-    public void updateTicket(@RequestBody Ticket updateTicket)
-    {
-        ticketService.update(updateTicket);
-    }
 }

@@ -38,7 +38,7 @@ public class TicketDALImpl implements TicketDAL {
 
 		for(Ticket ticket : allTickets)
 		{
-			if(ticket.getPerson().getAge()<18)
+			if(ticket.getPerson().getAge()<age)
 			{
 				allTicketsByAge.add(ticket);
 			}

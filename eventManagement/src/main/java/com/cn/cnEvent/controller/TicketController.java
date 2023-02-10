@@ -27,7 +27,7 @@ public class TicketController {
     }
 
     @GetMapping("/allTickets/age/{age}")
-    public List<Ticket> getAllTicketsByAge(Long age) {
+    public List<Ticket> getAllTicketsByAge(@PathVariable Long age) {
         return ticketService.getAllTicketsByAge(age);
     }
 }

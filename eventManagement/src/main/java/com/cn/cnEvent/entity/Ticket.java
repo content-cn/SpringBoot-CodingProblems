@@ -26,7 +26,6 @@ public class Ticket {
     private Event event;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
     private Person person;
 
     public Long getId() {

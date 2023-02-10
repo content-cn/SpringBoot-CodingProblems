@@ -111,6 +111,7 @@ public class EventDALImpl implements EventDAL {
 		Session session = entityManager.unwrap(Session.class);
 		Event currentEvent = session.get(Event.class, updateEvent.getId());
 		currentEvent.setName(updateEvent.getName());
+		currentEvent.setDescription(updateEvent.getDescription());
 		session.update(currentEvent);
 		
 	}

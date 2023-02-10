@@ -16,6 +16,7 @@ public class Person {
     private Long age;
 
     @OneToOne(mappedBy = "person")
+    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
     public Long getId() {

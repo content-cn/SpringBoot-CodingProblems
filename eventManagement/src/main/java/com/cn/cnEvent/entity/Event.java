@@ -31,7 +31,8 @@ public class Event {
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "event_speaker",
 			joinColumns = @JoinColumn(name = "event_id"),
-			inverseJoinColumns = @JoinColumn(name = "speaker_id"))
+			inverseJoinColumns = @JoinColumn(name = "speaker_id"),
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"event_id", "speaker_id"})})
 	private List<Speaker> speakers;
 
 	public Long getId() {

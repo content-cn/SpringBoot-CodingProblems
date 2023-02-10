@@ -1,5 +1,7 @@
 package com.cn.cnEvent.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class Speaker {
         this.experience = experience;
     }
 
+    @JsonIgnore
     public List<Event> getEvents() {
         return events;
     }

@@ -26,10 +26,15 @@ public class SpeakerController {
         return speakerService.getAllSpeakers();
     }
 
-    @GetMapping("allSpeakers/eventCount/{eventCount}")
-    public List<Speaker> getAllSpeakersByEventCount(@PathVariable Long eventCount)
+    @GetMapping("allSpeakers/eventCount/{eventCount}/experience/{experience}")
+    public List<Speaker> getAllSpeakersByEventCountAndExperience(@PathVariable Long eventCount, @PathVariable Long experience)
     {
-        return speakerService.getAllSpeakersByEventCount(eventCount);
+        return speakerService.getAllSpeakersByEventCountAndExperience(eventCount,experience);
+    }
+
+    @PostMapping("/id/{speakerId}/eventId/{eventId}")
+    public void addSpeakerToEvent(@PathVariable("eventId") Long eventId, @PathVariable("speakerId") Long speakerId) {
+        speakerService.addSpeakerToEvent(eventId, speakerId);
     }
 
     @PostMapping("/save")

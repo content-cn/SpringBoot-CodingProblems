@@ -25,8 +25,13 @@ public class SpeakerService {
 	}
 
 	@Transactional
-	public List<Speaker> getAllSpeakersByEventCount(Long eventCount) {
-		return speakerDAL.getAllSpeakersByEventCount(eventCount);
+	public List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience) {
+		return speakerDAL.getAllSpeakersByEventCountAndExperience(eventCount,experience);
+	}
+
+	@Transactional
+	public void addSpeakerToEvent(Long eventId, Long speakerId) {
+		speakerDAL.addSpeakerToEvent(eventId,speakerId);
 	}
 
 	@Transactional

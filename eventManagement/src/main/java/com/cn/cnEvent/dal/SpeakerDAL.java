@@ -10,7 +10,9 @@ public interface SpeakerDAL {
 
 	List<Speaker> getAllSpeakers();
 
-	List<Speaker> getAllSpeakersByEventCount(Long eventCount);
+	List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience);
+
+	void addSpeakerToEvent(Long eventId, Long speakerId);
 
 	String save(Speaker speaker);
 }

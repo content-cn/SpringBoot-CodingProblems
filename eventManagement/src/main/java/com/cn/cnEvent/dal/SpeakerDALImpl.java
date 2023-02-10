@@ -1,5 +1,6 @@
 package com.cn.cnEvent.dal;
 
+import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.Speaker;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +32,31 @@ public class SpeakerDALImpl implements SpeakerDAL {
 	}
 
 	@Override
-	public List<Speaker> getAllSpeakersByEventCount(Long eventCount){
+	public List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience){
 
 		List<Speaker> allSpeakers=getAllSpeakers();
-		List<Speaker> allSpeakersByEventCount=new ArrayList<>();
+		List<Speaker> allSpeakersByEventCountAndExperience=new ArrayList<>();
 		for(Speaker speaker: allSpeakers)
 		{
-			if(speaker.getEvents().size()>=eventCount && speaker.getExperience()>5)
+			if(speaker.getEvents().size()>=eventCount && speaker.getExperience()>experience)
 			{
-				allSpeakersByEventCount.add(speaker);
+				allSpeakersByEventCountAndExperience.add(speaker);
 			}
 		}
-		return allSpeakersByEventCount;
+		return allSpeakersByEventCountAndExperience;
+	}
+
+	@Override
+	public void addSpeakerToEvent(Long eventId, Long speakerId){
+		Session session = entityManager.unwrap(Session.class);
+		Event event = session.get(Event.class, eventId);
+		Speaker speaker = session.get(Speaker.class, speakerId);
+		event.getSpeakers().add(speaker);
+		speaker.getEvents().add(event);
+		session.save(event);
+		session.flush();
+		session.clear();
+		session.close();
 	}
 
 	@Override

@@ -54,4 +54,7 @@ public class EventScheduleDetail {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public void setEvent(Object o) {
+    }
 }

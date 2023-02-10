@@ -33,14 +33,4 @@ public class SpeakerService {
 	public String saveSpeaker(Speaker speaker) {
 		return speakerDAL.save(speaker);
 	}
-
-	@Transactional
-	public String delete(Long id) {
-		return speakerDAL.delete(id);
-	}
-
-	@Transactional
-	public void update(Speaker updateSpeaker) {
-		speakerDAL.update(updateSpeaker);
-	}
 }

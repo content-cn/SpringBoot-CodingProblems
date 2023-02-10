@@ -22,7 +22,7 @@ public class Event {
 	@Column(name = "description", nullable = false)
 	private String description;
 
-	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "event")
 	private EventScheduleDetail eventScheduleDetail;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)

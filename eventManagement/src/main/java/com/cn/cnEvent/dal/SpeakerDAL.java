@@ -13,8 +13,4 @@ public interface SpeakerDAL {
 	List<Speaker> getAllSpeakersByEventCount(Long eventCount);
 
 	String save(Speaker speaker);
-
-	String delete(Long id);
-
-	void update(Speaker updateSpeaker);
 }

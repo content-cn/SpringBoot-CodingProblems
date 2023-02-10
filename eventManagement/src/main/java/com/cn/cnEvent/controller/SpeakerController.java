@@ -37,17 +37,4 @@ public class SpeakerController {
     {
         return speakerService.saveSpeaker(speaker);
     }
-
-    @DeleteMapping("/delete/id/{id}")
-    public String deleteSpeaker(@PathVariable Long id)
-    {
-        return speakerService.delete(id);
-    }
-
-    @PutMapping("/update")
-    public void updateSpeaker(@RequestBody Speaker updateSpeaker)
-    {
-        speakerService.update(updateSpeaker);
-    }
-
 }

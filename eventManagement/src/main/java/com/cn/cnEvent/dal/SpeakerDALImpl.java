@@ -51,20 +51,4 @@ public class SpeakerDALImpl implements SpeakerDAL {
 		session.save(speaker);
 		return "The speaker was saved successfully.";
 	}
-
-	@Override
-	public String delete(Long id) {
-		Session session = entityManager.unwrap(Session.class);
-		Speaker speaker = session.get(Speaker.class, id);
-		session.delete(speaker);
-		return "The speaker was deleted successfully";
-	}
-
-	@Override
-	public void update(Speaker updateSpeaker) {
-		Session session = entityManager.unwrap(Session.class);
-		Speaker currentSpeaker = session.get(Speaker.class, updateSpeaker.getId());
-		currentSpeaker.setName(updateSpeaker.getName());
-		session.update(currentSpeaker);
-	}
 }

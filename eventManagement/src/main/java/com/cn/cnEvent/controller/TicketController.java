@@ -4,7 +4,6 @@ import com.cn.cnEvent.entity.Ticket;
 import com.cn.cnEvent.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

@@ -20,7 +20,6 @@ public class SpeakerService {
 	@Transactional
 	public Speaker getSpeakerById(Long id) {
 		Speaker speaker=speakerDAL.getById(id);
-
 		if(speaker==null)
 		{
 			throw new NotFoundException("No speaker found with id:  "+id);
@@ -40,12 +39,13 @@ public class SpeakerService {
 
 	@Transactional
 	public List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience) {
-		try{
-			return speakerDAL.getAllSpeakersByEventCountAndExperience(eventCount,experience);
-		}
-		catch(Exception e){
+		List<Speaker> speakers = speakerDAL.getAllSpeakersByEventCountAndExperience(eventCount, experience);
+		if (speakers == null) {
+
 			throw new NotFoundException("No speakers found.");
+
 		}
+		return speakers;
 	}
 
 	@Transactional
@@ -55,7 +55,7 @@ public class SpeakerService {
 		}
 		catch(Exception e){
 			throw new ElementAlreadyExistException("Speaker and Event are either already linked, " +
-					"or one of the entities doesnt exist");
+					"or one of the entities doesn't exist");
 		}
 
 	}

@@ -7,6 +7,7 @@ import com.cn.cnEvent.exception.InvalidInputException;
 import com.cn.cnEvent.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -18,22 +19,23 @@ public class EventScheduleDetailService {
 
 	@Transactional
 	public EventScheduleDetail getEventScheduleDetailById(Long id) {
-		try{
-			return eventScheduleDetailDAL.getById(id);
-		}
-		catch(Exception e) {
+		EventScheduleDetail eventScheduleDetail= eventScheduleDetailDAL.getById(id);
+
+		if(eventScheduleDetail==null)
+		{
 			throw new NotFoundException("No EventScheduleDetail found with id:  "+id);
 		}
+		return eventScheduleDetail;
 	}
 
 	@Transactional
 	public List<EventScheduleDetail> getAllEventScheduleDetails() {
-		try{
-			return eventScheduleDetailDAL.getAllEventScheduleDetails();
+		List<EventScheduleDetail> eventScheduleDetails= eventScheduleDetailDAL.getAllEventScheduleDetails();
+		if(eventScheduleDetails==null){
+
+			throw new NotFoundException("No eventScheduleDetail found");
 		}
-		catch(Exception e){
-			throw new NotFoundException("No eventScheduleDetails found.");
-		}
+		return eventScheduleDetails;
 	}
 
 	@Transactional
@@ -51,7 +53,7 @@ public class EventScheduleDetailService {
 		}
 		catch (Exception e)
 		{
-			throw new InvalidInputException("The input entity for eventSheduleDetail is invalid.");
+			throw new InvalidInputException("The input entity for eventScheduleDetail is invalid.");
 		}
 	}
 }

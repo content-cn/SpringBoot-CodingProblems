@@ -18,7 +18,6 @@ public class PersonService {
 	@Transactional
 	public Person getPersonById(Long id) {
 		Person person=personDAL.getById(id);
-
 		if(person==null)
 		{
 			throw new NotFoundException("No person found with id:  "+id);

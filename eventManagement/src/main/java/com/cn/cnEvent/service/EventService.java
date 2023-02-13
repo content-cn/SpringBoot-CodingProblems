@@ -21,54 +21,60 @@ public class EventService {
 
 	@Transactional
 	public Event getEventById(Long id) {
-		try {
-			return eventDAL.getById(id);
-		} catch (Exception e) {
+		Event event=eventDAL.getById(id);
+		if(event==null){
 			throw new NotFoundException("No event found with id:  "+id);
 		}
+		return event;
 	}
 
 	@Transactional
 	public List<Event> getAllEvents() {
-		try {
-			return eventDAL.getAllEvents();
-		} catch (Exception e) {
+		List<Event> events=eventDAL.getAllEvents();
+		if(events==null){
+
 			throw new NotFoundException("No events found.");
 		}
+		return events;
 	}
 
 	@Transactional
 	public List<Event> getAllEventsByLocation(String location) {
-		try {
-			return eventDAL.getAllEventsByLocation(location);
-		} catch (Exception e) {
+		List<Event> events=eventDAL.getAllEventsByLocation(location);
+		if(events==null){
+
 			throw new NotFoundException("No events found for location: " + location);
 		}
+		return events;
 	}
 
 	public EventScheduleDetail getEventScheduleDetailByEventId(Long id) {
-		try {
-			return eventDAL.getEventScheduleDetailByEventId(id);
-		} catch (Exception e) {
+		EventScheduleDetail eventScheduleDetail=eventDAL.getEventScheduleDetailByEventId(id);
+		if(eventScheduleDetail==null){
+
 			throw new NotFoundException("Event schedule detail not found for event with id: " + id);
 		}
+		return eventScheduleDetail;
 	}
 
 	public List<Ticket> getAllTicketsOfEvent(Long id) {
-		try {
-			return eventDAL.getAllTicketsOfEvent(id);
-		} catch (Exception e) {
+		List<Ticket> tickets= eventDAL.getAllTicketsOfEvent(id);
+		if(tickets==null){
+
 			throw new NotFoundException("No tickets found for event with id: " + id);
+
 		}
+		return tickets;
 	}
 
 	@Transactional
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price) {
-		try {
-			return eventDAL.getAllEventsHavingTicketPriceGreaterThan(price);
-		} catch (Exception e) {
+		List<Event> events=eventDAL.getAllEventsHavingTicketPriceGreaterThan(price);
+		if(events==null){
+
 			throw new NotFoundException("No events found with ticket price greater than: " + price);
 		}
+		return events;
 	}
 
 	@Transactional

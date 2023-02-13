@@ -6,7 +6,6 @@ import com.cn.cnEvent.entity.Ticket;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,10 @@ public class EventDALImpl implements EventDAL {
 
 	@Override
 	public Event getById(Long id) {
+		System.out.println("Entered event by id.2");
 		Session session = entityManager.unwrap(Session.class);
 		Event event = session.get(Event.class, id);
+		System.out.println("Entered event by id.3");
 		return event;
 	}
 

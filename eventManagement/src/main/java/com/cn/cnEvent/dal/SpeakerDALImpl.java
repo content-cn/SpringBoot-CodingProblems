@@ -33,7 +33,6 @@ public class SpeakerDALImpl implements SpeakerDAL {
 
 	@Override
 	public List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience){
-
 		List<Speaker> allSpeakers=getAllSpeakers();
 		List<Speaker> allSpeakersByEventCountAndExperience=new ArrayList<>();
 		for(Speaker speaker: allSpeakers)

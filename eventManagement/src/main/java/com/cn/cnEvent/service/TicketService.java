@@ -18,7 +18,6 @@ public class TicketService {
 	@Transactional
 	public Ticket getTicketById(Long id) {
 		Ticket ticket=ticketDAL.getById(id);
-
 		if(ticket==null)
 		{
 			throw new NotFoundException("No ticket found with id:  "+id);
@@ -38,10 +37,11 @@ public class TicketService {
 
 	@Transactional
 	public List<Ticket> getAllTicketsByAge(Long age) {
-		try {
-			return ticketDAL.getAllTicketsByAge(age);
-		} catch (Exception e) {
+		List<Ticket> tickets = ticketDAL.getAllTicketsByAge(age);
+		if(tickets==null)
+		{
 			throw new NotFoundException("No tickets found with by age less than: " + age);
 		}
+		return tickets;
 	}
 }

@@ -29,7 +29,6 @@ public class EventScheduleDetailDALImpl implements EventScheduleDetailDAL {
 		return allEventScheduleDetails;
 	}
 
-
 	@Override
 	public String save(EventScheduleDetail eventScheduleDetail) {
 		Session session = entityManager.unwrap(Session.class);

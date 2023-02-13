@@ -3,9 +3,11 @@ package com.cn.cnEvent.dal;
 import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.EventScheduleDetail;
 import com.cn.cnEvent.entity.Ticket;
+import com.cn.cnEvent.exception.NotFoundException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +20,8 @@ public class EventDALImpl implements EventDAL {
 
 	@Override
 	public Event getById(Long id) {
-		System.out.println("Entered event by id.2");
 		Session session = entityManager.unwrap(Session.class);
 		Event event = session.get(Event.class, id);
-		System.out.println("Entered event by id.3");
 		return event;
 	}
 
@@ -35,15 +35,17 @@ public class EventDALImpl implements EventDAL {
 
 	@Override
 	public List<Event> getAllEventsByLocation(String location) {
-		List<Event> allEvents= getAllEvents();
+		List<Event> allEvents = getAllEvents();
 
 		List<Event> eventsByLocation = new ArrayList<>();
-		for(Event event : allEvents)
-		{
-			if(event.getEventScheduleDetail().getLocation().equalsIgnoreCase(location))
-			{
-				eventsByLocation.add(event);
+		try {
+			for (Event event : allEvents) {
+				if (event.getEventScheduleDetail().getLocation().equalsIgnoreCase(location)) {
+					eventsByLocation.add(event);
+				}
 			}
+		} catch (Exception e) {
+			throw new NotFoundException("ScheduleDetail of a event is not present");
 		}
 		return eventsByLocation;
 	}
@@ -65,16 +67,18 @@ public class EventDALImpl implements EventDAL {
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price){
 		List<Event> allEvents=getAllEvents();
 		List<Event> eventsByPrice = new ArrayList<>();
-		for(Event event : allEvents)
-		{
-			for(Ticket ticket : event.getTickets())
-			{
-				if(ticket.getPrice()>1000)
-				{
-					eventsByPrice.add(event);
-					break;
+		try {
+			for (Event event : allEvents) {
+				for (Ticket ticket : event.getTickets()) {
+					if (ticket.getPrice() > 1000) {
+						eventsByPrice.add(event);
+						break;
+					}
 				}
 			}
+		}
+		 catch (Exception e) {
+			throw new NotFoundException("Tickets not present for the event");
 		}
 		return eventsByPrice;
 	}

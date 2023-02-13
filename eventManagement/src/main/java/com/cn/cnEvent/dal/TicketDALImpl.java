@@ -1,6 +1,7 @@
 package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Ticket;
+import com.cn.cnEvent.exception.NotFoundException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,13 +36,16 @@ public class TicketDALImpl implements TicketDAL {
 		Session session = entityManager.unwrap(Session.class);
 		List<Ticket> allTickets=getAllTickets();
 		List<Ticket> allTicketsByAge= new ArrayList<>();
-
-		for(Ticket ticket : allTickets)
-		{
-			if(ticket.getPerson().getAge()<age)
-			{
-				allTicketsByAge.add(ticket);
+		try {
+			for (Ticket ticket : allTickets) {
+				if (ticket.getPerson().getAge() < age) {
+					allTicketsByAge.add(ticket);
+				}
 			}
+		}
+		catch (Exception e)
+		{
+			throw new NotFoundException("Person details of a ticket not found.");
 		}
 		return allTicketsByAge;
 	}

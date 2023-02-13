@@ -2,6 +2,7 @@ package com.cn.cnEvent.service;
 
 import com.cn.cnEvent.dal.TicketDAL;
 import com.cn.cnEvent.entity.Ticket;
+import com.cn.cnEvent.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +17,31 @@ public class TicketService {
 
 	@Transactional
 	public Ticket getTicketById(Long id) {
-		return ticketDAL.getById(id);
+		Ticket ticket=ticketDAL.getById(id);
+
+		if(ticket==null)
+		{
+			throw new NotFoundException("No ticket found with id:  "+id);
+		}
+		return ticket;
 	}
 
 	@Transactional
 	public List<Ticket> getAllTickets() {
-		return ticketDAL.getAllTickets();
+		List<Ticket> ticket = ticketDAL.getAllTickets();
+		if(ticket==null)
+		{
+			throw new NotFoundException("No tickets found.");
+		}
+		return ticket;
 	}
 
 	@Transactional
 	public List<Ticket> getAllTicketsByAge(Long age) {
-		return ticketDAL.getAllTicketsByAge(age);
+		try {
+			return ticketDAL.getAllTicketsByAge(age);
+		} catch (Exception e) {
+			throw new NotFoundException("No tickets found with by age less than: " + age);
+		}
 	}
 }

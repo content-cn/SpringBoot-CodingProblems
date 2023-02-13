@@ -2,6 +2,9 @@ package com.cn.cnEvent.service;
 
 import com.cn.cnEvent.dal.SpeakerDAL;
 import com.cn.cnEvent.entity.Speaker;
+import com.cn.cnEvent.exception.ElementAlreadyExistException;
+import com.cn.cnEvent.exception.InvalidInputException;
+import com.cn.cnEvent.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,26 +19,63 @@ public class SpeakerService {
 
 	@Transactional
 	public Speaker getSpeakerById(Long id) {
-		return speakerDAL.getById(id);
+		Speaker speaker=speakerDAL.getById(id);
+
+		if(speaker==null)
+		{
+			throw new NotFoundException("No speaker found with id:  "+id);
+		}
+		return speaker;
 	}
 
 	@Transactional
 	public List<Speaker> getAllSpeakers() {
-		return speakerDAL.getAllSpeakers();
+		List<Speaker> speaker = speakerDAL.getAllSpeakers();
+		if(speaker==null)
+		{
+			throw new NotFoundException("No speakers found.");
+		}
+		return speaker;
 	}
 
 	@Transactional
 	public List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience) {
-		return speakerDAL.getAllSpeakersByEventCountAndExperience(eventCount,experience);
+		try{
+			return speakerDAL.getAllSpeakersByEventCountAndExperience(eventCount,experience);
+		}
+		catch(Exception e){
+			throw new NotFoundException("No speakers found.");
+		}
 	}
 
 	@Transactional
 	public void addSpeakerToEvent(Long eventId, Long speakerId) {
-		speakerDAL.addSpeakerToEvent(eventId,speakerId);
+		try{
+			speakerDAL.addSpeakerToEvent(eventId,speakerId);
+		}
+		catch(Exception e){
+			throw new ElementAlreadyExistException("Speaker and Event are either already linked, " +
+					"or one of the entities doesnt exist");
+		}
+
 	}
 
 	@Transactional
-	public String saveSpeaker(Speaker speaker) {
-		return speakerDAL.save(speaker);
+	public String saveSpeaker(Speaker newSpeaker) {
+		List<Speaker> allSpeakers = getAllSpeakers();
+		for(Speaker speaker : allSpeakers)
+		{
+			if(speaker.getId()==newSpeaker.getId())
+			{
+				throw new ElementAlreadyExistException("This speaker already exist.");
+			}
+		}
+		try {
+			return speakerDAL.save(newSpeaker);
+		}
+		catch (Exception e)
+		{
+			throw new InvalidInputException("The input entity for speaker is invalid.");
+		}
 	}
 }

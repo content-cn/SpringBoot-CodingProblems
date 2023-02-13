@@ -34,9 +34,7 @@ public class EventDALImpl implements EventDAL {
 
 	@Override
 	public List<Event> getAllEventsByLocation(String location) {
-		Session session = entityManager.unwrap(Session.class);
-		List<Event> allEvents= session.createQuery(
-				"SELECT e FROM Event e", Event.class).getResultList();
+		List<Event> allEvents= getAllEvents();
 
 		List<Event> eventsByLocation = new ArrayList<>();
 		for(Event event : allEvents)
@@ -64,7 +62,6 @@ public class EventDALImpl implements EventDAL {
 
 	@Override
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price){
-		Session session = entityManager.unwrap(Session.class);
 		List<Event> allEvents=getAllEvents();
 		List<Event> eventsByPrice = new ArrayList<>();
 		for(Event event : allEvents)

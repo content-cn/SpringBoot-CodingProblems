@@ -109,13 +109,13 @@ public class EventDALImpl implements EventDAL {
 	}
 
 	@Override
-	public void update(Event updateEvent) {
+	public String update(Event updateEvent) {
 		Session session = entityManager.unwrap(Session.class);
 		Event currentEvent = session.get(Event.class, updateEvent.getId());
 		currentEvent.setName(updateEvent.getName());
 		currentEvent.setDescription(updateEvent.getDescription());
 		session.update(currentEvent);
-		
+		return "Event is updated successfully";
 	}
 	
 }

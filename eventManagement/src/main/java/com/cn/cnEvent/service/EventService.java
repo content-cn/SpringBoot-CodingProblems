@@ -48,6 +48,7 @@ public class EventService {
 		return events;
 	}
 
+	@Transactional
 	public EventScheduleDetail getEventScheduleDetailByEventId(Long id) {
 		EventScheduleDetail eventScheduleDetail=eventDAL.getEventScheduleDetailByEventId(id);
 		if(eventScheduleDetail==null){
@@ -57,6 +58,7 @@ public class EventService {
 		return eventScheduleDetail;
 	}
 
+	@Transactional
 	public List<Ticket> getAllTicketsOfEvent(Long id) {
 		List<Ticket> tickets= eventDAL.getAllTicketsOfEvent(id);
 		if(tickets==null){
@@ -131,9 +133,9 @@ public class EventService {
 	}
 
 	@Transactional
-	public void update(Event updateEvent) {
+	public String update(Event updateEvent) {
 		try{
-			eventDAL.update(updateEvent);
+			return eventDAL.update(updateEvent);
 		}
 		catch (Exception e){
 			throw new InvalidInputException("Error in deleting eventScheduleDetail from event.");

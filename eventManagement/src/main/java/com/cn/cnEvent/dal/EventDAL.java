@@ -25,5 +25,5 @@ public interface EventDAL {
 
 	String deleteEventScheduleDetail(Long id);
 
-	void update(Event updateEvent);
+	String update(Event updateEvent);
 }

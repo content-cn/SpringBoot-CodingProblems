@@ -71,9 +71,9 @@ public class EventController {
 	}
 
 	@PutMapping("/update")
-	public void updateEvent(@RequestBody Event updateEvent)
+	public String updateEvent(@RequestBody Event updateEvent)
 	{
-		eventService.update(updateEvent);
+		return eventService.update(updateEvent);
 	}
 
 }

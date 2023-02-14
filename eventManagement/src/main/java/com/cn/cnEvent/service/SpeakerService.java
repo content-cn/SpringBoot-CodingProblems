@@ -17,18 +17,23 @@ public class SpeakerService {
 	@Autowired
 	SpeakerDAL speakerDAL;
 
+	//Complete the method body to get a Speaker by its id. Also implement Exception Handling.
 	public Speaker getSpeakerById(Long id) {
 	}
 
+	//Complete the method body to get All Speakers. Also implement Exception Handling.
 	public List<Speaker> getAllSpeakers() {
 	}
 
+	//Complete the method body get All Speakers with values of eventCount and experience more than the given values.. Also implement Exception Handling.
 	public List<Speaker> getAllSpeakersByEventCountAndExperience(Long eventCount, Long experience) {
 	}
 
+	//Complete the method body add a link between a eventId and speakerId in their combined table. Also implement Exception Handling.
 	public void addSpeakerToEvent(Long eventId, Long speakerId) {
 	}
 
+	//Complete the method body to save an existing Speaker. Also implement Exception Handling.
 	public String saveSpeaker(Speaker newSpeaker) {
 	}
 }

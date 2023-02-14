@@ -2,7 +2,6 @@ package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.EventScheduleDetail;
-import com.cn.cnEvent.entity.Ticket;
 import com.cn.cnEvent.exception.NotFoundException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,56 +33,6 @@ public class EventDALImpl implements EventDAL {
 	}
 
 	@Override
-	public List<Event> getAllEventsByLocation(String location) {
-		List<Event> allEvents = getAllEvents();
-
-		List<Event> eventsByLocation = new ArrayList<>();
-		try {
-			for (Event event : allEvents) {
-				if (event.getEventScheduleDetail().getLocation().equalsIgnoreCase(location)) {
-					eventsByLocation.add(event);
-				}
-			}
-		} catch (Exception e) {
-			throw new NotFoundException("ScheduleDetail of a event is not present");
-		}
-		return eventsByLocation;
-	}
-
-	@Override
-	public EventScheduleDetail getEventScheduleDetailByEventId(Long id){
-		Session session = entityManager.unwrap(Session.class);
-		Event event = session.get(Event.class, id);
-		return event.getEventScheduleDetail();
-	}
-
-	@Override
-	public List<Ticket> getAllTicketsOfEvent(Long id){
-		Event event = getById(id);
-		return event.getTickets();
-	}
-
-	@Override
-	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price){
-		List<Event> allEvents=getAllEvents();
-		List<Event> eventsByPrice = new ArrayList<>();
-		try {
-			for (Event event : allEvents) {
-				for (Ticket ticket : event.getTickets()) {
-					if (ticket.getPrice() > 1000) {
-						eventsByPrice.add(event);
-						break;
-					}
-				}
-			}
-		}
-		 catch (Exception e) {
-			throw new NotFoundException("Tickets not present for the event");
-		}
-		return eventsByPrice;
-	}
-
-	@Override
 	public String save(Event event) {
 		Session session = entityManager.unwrap(Session.class);
 		session.save(event);
@@ -99,23 +48,13 @@ public class EventDALImpl implements EventDAL {
 	}
 
 	@Override
-	public String deleteEventScheduleDetail(Long id) {
-		Session session = entityManager.unwrap(Session.class);
-		EventScheduleDetail eventScheduleDetail = session.createQuery(
-				"SELECT e FROM EventScheduleDetail e where e.event.id = :id", EventScheduleDetail.class).
-				setParameter("id",id).getSingleResult();
-		session.delete(eventScheduleDetail);
-		return "The eventSchedule was deleted successfully";
-	}
-
-	@Override
-	public void update(Event updateEvent) {
+	public String update(Event updateEvent) {
 		Session session = entityManager.unwrap(Session.class);
 		Event currentEvent = session.get(Event.class, updateEvent.getId());
 		currentEvent.setName(updateEvent.getName());
 		currentEvent.setDescription(updateEvent.getDescription());
 		session.update(currentEvent);
-		
+		return "Event updated successfully";
 	}
 	
 }

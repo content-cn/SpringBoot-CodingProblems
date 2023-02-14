@@ -6,28 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
-@RequestMapping("/eventScheduleDetail")
 public class EventScheduleDetailController {
 
-    @Autowired
-    EventScheduleDetailService eventScheduleDetailService;
 
-    @GetMapping("/id/{id}")
     public EventScheduleDetail getEventScheduleDetailById(@PathVariable Long id)
     {
-        return eventScheduleDetailService.getEventScheduleDetailById(id);
     }
 
-    @GetMapping("/allEventScheduleDetails")
     public List<EventScheduleDetail> getAllEventScheduleDetails()
     {
-        return eventScheduleDetailService.getAllEventScheduleDetails();
     }
 
-    @PostMapping("/save")
     public  String saveEventScheduleDetail(@RequestBody EventScheduleDetail event)
     {
-        return eventScheduleDetailService.saveEventScheduleDetail(event);
     }
 }

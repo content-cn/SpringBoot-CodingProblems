@@ -5,7 +5,6 @@
  import com.cn.cnEvent.service.EventService;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.web.bind.annotation.*;
- import com.cn.cnEvent.entity.Ticket;
  import java.util.List;
 
 @RestController
@@ -28,28 +27,12 @@ public class EventController {
 		return eventService.getAllEvents();
 	}
 
-	@GetMapping("/allEvents/location/{location}")
 	public List<Event> getAllEventsByLocation(@PathVariable String location)
 	{
-		return eventService.getAllEventsByLocation(location);
 	}
 
-	@GetMapping("/id/{id}/eventScheduleDetail")
 	public EventScheduleDetail getEventScheduleDetailByEventId(@PathVariable Long id)
 	{
-		return eventService.getEventScheduleDetailByEventId(id);
-	}
-
-	@GetMapping("/id/{id}/allTickets")
-	public List<Ticket> getAllTicketsOfEvent(@PathVariable Long id)
-	{
-		return eventService.getAllTicketsOfEvent(id);
-	}
-
-	@GetMapping("/allEvents/ticketsPriceGreaterThan/{price}")
-	public List<Event> getAllEventsHavingTicketPriceGreaterThan(@PathVariable Long price)
-	{
-		return eventService.getAllEventsHavingTicketPriceGreaterThan(price);
 	}
 	
 	@PostMapping("/save")
@@ -64,16 +47,14 @@ public class EventController {
 		return eventService.delete(id);
 	}
 
-	@DeleteMapping("/deleteEventScheduleDetail/id/{id}")
 	public String deleteEventScheduleDetail(@PathVariable Long id)
 	{
-		return eventService.deleteEventScheduleDetail(id);
 	}
 
 	@PutMapping("/update")
-	public void updateEvent(@RequestBody Event updateEvent)
+	public String updateEvent(@RequestBody Event updateEvent)
 	{
-		eventService.update(updateEvent);
+		return eventService.update(updateEvent);
 	}
 
 }

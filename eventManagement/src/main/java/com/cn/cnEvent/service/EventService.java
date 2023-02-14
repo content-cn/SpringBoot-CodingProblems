@@ -3,7 +3,6 @@ package com.cn.cnEvent.service;
 import com.cn.cnEvent.dal.EventDAL;
 import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.EventScheduleDetail;
-import com.cn.cnEvent.entity.Ticket;
 import com.cn.cnEvent.exception.ElementAlreadyExistException;
 import com.cn.cnEvent.exception.InvalidInputException;
 import com.cn.cnEvent.exception.NotFoundException;
@@ -38,43 +37,10 @@ public class EventService {
 		return events;
 	}
 
-	@Transactional
 	public List<Event> getAllEventsByLocation(String location) {
-		List<Event> events=eventDAL.getAllEventsByLocation(location);
-		if(events==null){
-
-			throw new NotFoundException("No events found for location: " + location);
-		}
-		return events;
 	}
 
 	public EventScheduleDetail getEventScheduleDetailByEventId(Long id) {
-		EventScheduleDetail eventScheduleDetail=eventDAL.getEventScheduleDetailByEventId(id);
-		if(eventScheduleDetail==null){
-
-			throw new NotFoundException("Event schedule detail not found for event with id: " + id);
-		}
-		return eventScheduleDetail;
-	}
-
-	public List<Ticket> getAllTicketsOfEvent(Long id) {
-		List<Ticket> tickets= eventDAL.getAllTicketsOfEvent(id);
-		if(tickets==null){
-
-			throw new NotFoundException("No tickets found for event with id: " + id);
-
-		}
-		return tickets;
-	}
-
-	@Transactional
-	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price) {
-		List<Event> events=eventDAL.getAllEventsHavingTicketPriceGreaterThan(price);
-		if(events==null){
-
-			throw new NotFoundException("No events found with ticket price greater than: " + price);
-		}
-		return events;
 	}
 
 	@Transactional
@@ -120,20 +86,13 @@ public class EventService {
 		}
 	}
 
-	@Transactional
 	public String deleteEventScheduleDetail(Long id) {
-		try{
-			return eventDAL.deleteEventScheduleDetail(id);
-		}
-		catch (Exception e){
-			throw new InvalidInputException("Error in deleting eventScheduleDetail from event.");
-		}
 	}
 
 	@Transactional
-	public void update(Event updateEvent) {
+	public String update(Event updateEvent) {
 		try{
-			eventDAL.update(updateEvent);
+			return eventDAL.update(updateEvent);
 		}
 		catch (Exception e){
 			throw new InvalidInputException("Error in deleting eventScheduleDetail from event.");

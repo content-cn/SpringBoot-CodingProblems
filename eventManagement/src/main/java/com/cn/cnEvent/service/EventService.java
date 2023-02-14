@@ -58,25 +58,10 @@ public class EventService {
 		return eventScheduleDetail;
 	}
 
-	@Transactional
 	public List<Ticket> getAllTicketsOfEvent(Long id) {
-		List<Ticket> tickets= eventDAL.getAllTicketsOfEvent(id);
-		if(tickets==null){
-
-			throw new NotFoundException("No tickets found for event with id: " + id);
-
-		}
-		return tickets;
 	}
 
-	@Transactional
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price) {
-		List<Event> events=eventDAL.getAllEventsHavingTicketPriceGreaterThan(price);
-		if(events==null){
-
-			throw new NotFoundException("No events found with ticket price greater than: " + price);
-		}
-		return events;
 	}
 
 	@Transactional

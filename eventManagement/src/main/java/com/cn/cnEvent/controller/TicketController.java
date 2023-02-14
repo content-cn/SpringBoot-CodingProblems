@@ -6,27 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
-@RequestMapping("/ticket")
 public class TicketController {
 
-    @Autowired
-    TicketService ticketService;
-
-    @GetMapping("/id/{id}")
-    public Ticket getTicketById(@PathVariable Long id)
-    {
-        return ticketService.getTicketById(id);
+    public Ticket getTicketById(@PathVariable Long id) {
     }
 
-    @GetMapping("/allTickets")
-    public List<Ticket> getAllTickets()
-    {
-        return ticketService.getAllTickets();
+    public List<Ticket> getAllTickets(){
     }
 
-    @GetMapping("/allTickets/age/{age}")
     public List<Ticket> getAllTicketsByAge(@PathVariable Long age) {
-        return ticketService.getAllTicketsByAge(age);
     }
 }

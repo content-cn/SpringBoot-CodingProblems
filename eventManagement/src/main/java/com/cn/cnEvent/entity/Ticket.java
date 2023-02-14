@@ -3,29 +3,18 @@ package com.cn.cnEvent.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.*;
-
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-@Entity
-@Table(name = "ticket")
 public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "price")
     private Long price;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id")
     private Event event;
 
-    @OneToOne(cascade = CascadeType.ALL)
     private Person person;
 
     public Long getId() {

@@ -25,16 +25,7 @@ public class Event {
 	@OneToOne(mappedBy = "event")
 	private EventScheduleDetail eventScheduleDetail;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Ticket> tickets;
-
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name = "event_speaker",
-			joinColumns = @JoinColumn(name = "event_id"),
-			inverseJoinColumns = @JoinColumn(name = "speaker_id"),
-			uniqueConstraints = {@UniqueConstraint(columnNames = {"event_id", "speaker_id"})})
-
-	private List<Speaker> speakers;
 
 	public Long getId() {
 		return id;
@@ -74,14 +65,6 @@ public class Event {
 
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
-	}
-
-	public List<Speaker> getSpeakers() {
-		return speakers;
-	}
-
-	public void setSpeakers(List<Speaker> speakers) {
-		this.speakers = speakers;
 	}
 }
 

@@ -40,16 +40,12 @@ public class EventController {
 		return eventService.getEventScheduleDetailByEventId(id);
 	}
 
-	@GetMapping("/id/{id}/allTickets")
 	public List<Ticket> getAllTicketsOfEvent(@PathVariable Long id)
 	{
-		return eventService.getAllTicketsOfEvent(id);
 	}
 
-	@GetMapping("/allEvents/ticketsPriceGreaterThan/{price}")
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(@PathVariable Long price)
 	{
-		return eventService.getAllEventsHavingTicketPriceGreaterThan(price);
 	}
 	
 	@PostMapping("/save")

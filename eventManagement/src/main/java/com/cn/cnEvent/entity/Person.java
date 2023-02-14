@@ -1,23 +1,14 @@
 package com.cn.cnEvent.entity;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name="person")
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "age")
     private Long age;
 
-    @OneToOne(mappedBy = "person")
-    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
     public Long getId() {

@@ -12,27 +12,10 @@ import java.util.List;
 @Service
 public class PersonService {
 
-	@Autowired
-	PersonDAL personDAL;
-
-	@Transactional
 	public Person getPersonById(Long id) {
-		Person person=personDAL.getById(id);
-		if(person==null)
-		{
-			throw new NotFoundException("No person found with id:  "+id);
-		}
-		return person;
 	}
 
-	@Transactional
 	public List<Person> getAllPersons() {
-		List<Person> person = personDAL.getAllPersons();
-		if(person==null)
-		{
-			throw new NotFoundException("No persons found.");
-		}
-		return person;
 	}
 
 }

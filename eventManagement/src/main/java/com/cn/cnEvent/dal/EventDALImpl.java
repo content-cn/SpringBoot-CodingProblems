@@ -58,32 +58,6 @@ public class EventDALImpl implements EventDAL {
 	}
 
 	@Override
-	public List<Ticket> getAllTicketsOfEvent(Long id){
-		Event event = getById(id);
-		return event.getTickets();
-	}
-
-	@Override
-	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price){
-		List<Event> allEvents=getAllEvents();
-		List<Event> eventsByPrice = new ArrayList<>();
-		try {
-			for (Event event : allEvents) {
-				for (Ticket ticket : event.getTickets()) {
-					if (ticket.getPrice() > 1000) {
-						eventsByPrice.add(event);
-						break;
-					}
-				}
-			}
-		}
-		 catch (Exception e) {
-			throw new NotFoundException("Tickets not present for the event");
-		}
-		return eventsByPrice;
-	}
-
-	@Override
 	public String save(Event event) {
 		Session session = entityManager.unwrap(Session.class);
 		session.save(event);

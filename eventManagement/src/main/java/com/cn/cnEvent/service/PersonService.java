@@ -1,20 +1,18 @@
 package com.cn.cnEvent.service;
 
-import com.cn.cnEvent.dal.PersonDAL;
 import com.cn.cnEvent.entity.Person;
-import com.cn.cnEvent.exception.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class PersonService {
 
+	//Complete the method body to fetch a Person by its id. Also implement exception handling.
 	public Person getPersonById(Long id) {
 	}
 
+	//Complete the method body to fetch all Persons. Also implement exception handling.
 	public List<Person> getAllPersons() {
 	}
 

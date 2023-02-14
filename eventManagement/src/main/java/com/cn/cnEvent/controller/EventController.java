@@ -2,10 +2,11 @@
 
  import com.cn.cnEvent.entity.Event;
  import com.cn.cnEvent.entity.EventScheduleDetail;
+ import com.cn.cnEvent.entity.Ticket;
  import com.cn.cnEvent.service.EventService;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.web.bind.annotation.*;
- import com.cn.cnEvent.entity.Ticket;
+
  import java.util.List;
 
 @RestController
@@ -40,10 +41,20 @@ public class EventController {
 		return eventService.getEventScheduleDetailByEventId(id);
 	}
 
+	/*
+     1. Call the required service method
+     2. Add proper annotations for Get Mapping and fetch the
+         id from URL using PathVariable.
+*/
 	public List<Ticket> getAllTicketsOfEvent(@PathVariable Long id)
 	{
 	}
 
+	/*
+     1. Call the required service method
+     2. Add proper annotations for Get Mapping and fetch the
+         price from URL using PathVariable.
+    */
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(@PathVariable Long price)
 	{
 	}

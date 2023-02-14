@@ -2,7 +2,6 @@ package com.cn.cnEvent.dal;
 
 import com.cn.cnEvent.entity.Event;
 import com.cn.cnEvent.entity.EventScheduleDetail;
-import com.cn.cnEvent.entity.Ticket;
 import com.cn.cnEvent.exception.NotFoundException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

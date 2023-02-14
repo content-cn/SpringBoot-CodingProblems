@@ -58,9 +58,11 @@ public class EventService {
 		return eventScheduleDetail;
 	}
 
+	//Complete the method body to get All ticket of an Event, given the event id. Also implement exception handling.
 	public List<Ticket> getAllTicketsOfEvent(Long id) {
 	}
 
+	//Complete the method body to get All Events having any-one Ticket price greater than the given price.Also implement exception handling.
 	public List<Event> getAllEventsHavingTicketPriceGreaterThan(Long price) {
 	}
 

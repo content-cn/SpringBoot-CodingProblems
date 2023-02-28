@@ -22,26 +22,18 @@ public class Income {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(mappedBy = "income")
+    @OneToOne
+    @JoinColumn(name = "expense_id")
     private Expense expense;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = "user_income",
-            joinColumns = @JoinColumn(name = "income_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(mappedBy = "incomes")
     private List<User> users;
 
     @OneToMany(mappedBy = "income", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<IncomeType> incomeTypes;
 
     public Income() {
-        IncomeType a=new IncomeType("Salary"),b=new IncomeType("Bonus"),c = new IncomeType("Consultancy");
-        List<IncomeType> incomeTypes=new ArrayList<>();
-        incomeTypes.add(a);
-        incomeTypes.add(b);
-        incomeTypes.add(c);
-        System.out.println(incomeTypes);
-        this.incomeTypes=incomeTypes;
+        users=new ArrayList<>();
     }
 
     public Income(double amount, LocalDate date, String description) {

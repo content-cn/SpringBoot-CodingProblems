@@ -2,7 +2,6 @@ package com.example.cnExpense.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,8 +25,7 @@ public class Expense {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "income_id")
+    @OneToOne(mappedBy = "expense")
     private Income income;
 
 
@@ -35,12 +33,6 @@ public class Expense {
     private List<ExpenseType> expenseTypes;
 
     public Expense() {
-        ExpenseType a=new ExpenseType("Salary"),b=new ExpenseType("Bonus"),c = new ExpenseType("Consultancy");
-        List<ExpenseType> expenseTypes=new ArrayList<>();
-        expenseTypes.add(a);
-        expenseTypes.add(b);
-        expenseTypes.add(c);
-        this.expenseTypes=expenseTypes;
     }
 
     public Expense(double amount, LocalDate date, String description, User user) {

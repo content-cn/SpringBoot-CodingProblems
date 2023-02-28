@@ -10,7 +10,7 @@
 	<% if (request.getParameter("error") != null) { %>
 		<p style="color:red;">Invalid username</p>
 	<% } %>
-	 <form:form modelAttribute="expense" action="${pageContext.request.contextPath}/processExpensePage">
+	 <form:form method="get" modelAttribute="expense" action="${pageContext.request.contextPath}/processExpensePage">
             <table>
                 <tr>
                     <td>Enter your Amount:</td>
@@ -30,9 +30,10 @@
                 <tr>
                     <td>Select a Category:&nbsp;</td>
                     <td>
-                    <form:checkbox path="expenseTypes" value="Salary" label="Salary"/>
-                    <form:checkbox path="expenseTypes" value="Bonus" label="Bonus"/>
-                    <form:checkbox path="expenseTypes" value="Consultancy" label="Consultancy"/>
+                    <form:checkbox path="expenseTypes" value="Food" label="Food"/>
+                    <form:checkbox path="expenseTypes" value="Education" label="Education"/>
+                    <form:checkbox path="expenseTypes" value="Bills" label="Bills"/>
+                    <form:checkbox path="expenseTypes" value="Travel" label="Travel"/>
                     <td>
                 </tr>
                 <tr>

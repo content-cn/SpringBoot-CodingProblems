@@ -1,8 +1,6 @@
 package com.example.cnExpense.controllers;
 
-import com.example.cnExpense.entities.Expense;
-import com.example.cnExpense.entities.Income;
-import com.example.cnExpense.entities.User;
+import com.example.cnExpense.entities.*;
 import com.example.cnExpense.jspEntities.Choice;
 import com.example.cnExpense.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
-//import org.springframework.web.bind.annotation.ResponseBody;
-
 
 @Controller
-public class ViewController {
+public class ViewController{
+
+
+	public static Integer userid;
+	public static Integer incomeid;
 
 	@Autowired
 	private APIService apiService;
@@ -26,20 +27,17 @@ public class ViewController {
 	public String home() {
 		return "home";
 	}
+
 	@GetMapping("/error")
 	public String error() {
-
-		System.out.println("OOPS you have an error.");
 		return "error";
 	}
 
 	@GetMapping("/processHomePage")
 	public String processHomePage(@ModelAttribute("choice")Choice choice, Model model) {
-		System.out.println(choice.getChoice());
 		model.addAttribute(new User());
 		if(choice.getChoice().equalsIgnoreCase("Yes"))
 		{
-
 			return "login";
 		}
 		else
@@ -59,15 +57,13 @@ public class ViewController {
 		{
 			model.addAttribute("action", "logged into");
 			model.addAttribute("redirectPageName","Income");
-			System.out.println(request.getContextPath()+"income");
 			model.addAttribute("redirectPage","income");
-
-			model.addAttribute(user);
+			User savedUser=apiService.findUser(user);
+			userid=savedUser.getId();
 			return "success";
 		}
 		else
 		{
-			model.addAttribute(user);
 			model.addAttribute("action", "login");
 			model.addAttribute("redirectPageName","Home");
 			model.addAttribute("redirectPage","home");
@@ -76,16 +72,20 @@ public class ViewController {
 	}
 
 	@GetMapping({"/processSuccessPage","/processFailurePage"})
-	public String processSuccessAndFailurePage(HttpServletRequest request, @ModelAttribute("user") User user, Model model) {
+	public String processSuccessAndFailurePage(HttpServletRequest request, Model model) {
 
-		System.out.println("Success and failure page will redirect to "+request.getParameter("redirectPage"));
 		if(request.getParameter("redirectPage").equals("income"))
 		{
 			model.addAttribute(new Income());
 		}
-		if(request.getParameter("redirectPage").equals("expense"))
+		else if(request.getParameter("redirectPage").equals("expense"))
 		{
 			model.addAttribute(new Expense());
+		}
+		else if(request.getParameter("redirectPage").equals("dashboardCalendar")){
+
+			List<User>users=apiService.getAllUsers();
+			model.addAttribute("users",users);
 		}
 		return request.getParameter("redirectPage");
 	}
@@ -97,15 +97,12 @@ public class ViewController {
 		{
 			return "login";
 		}
-		System.out.println("Process Register"+user.getUsername()+" "+user.getEmail()+" "+user.getNickname());
-		List<User>allUsers=apiService.getAllUsers();
 		if(apiService.checkUserExist(user)==false)
 		{
-			apiService.save(user);
+			apiService.saveUser(user);
 			model.addAttribute("action", "registered into");
 			model.addAttribute("redirectPageName","Home");
 			model.addAttribute("redirectPage","home");
-			model.addAttribute(user);
 			return "success";
 		}
 		else
@@ -114,23 +111,20 @@ public class ViewController {
 			model.addAttribute("redirectPageName","Registration");
 			model.addAttribute("redirectPage","register");
 			model.addAttribute("message","User already exist.");
-			model.addAttribute(user);
-
 			return "failure";
 		}
 	}
 
 	@GetMapping("/processIncomePage")
 	public String processIncomePage(HttpServletRequest request, @ModelAttribute("income") Income income, Model model) {
-		System.out.println(income.getAmount()+" "+income.getDate()+" "+income.getDescription());
-		//Add income to database
-		//something
+		User user= apiService.getUserById(userid);
+		Income savedIncome=apiService.saveIncome(user,income);
+		incomeid=savedIncome.getId();
 		if(true)
 		{
 			model.addAttribute("action", "add income");
 			model.addAttribute("redirectPageName","Expense");
 			model.addAttribute("redirectPage","expense");
-			//Pass income Id
 			return "success";
 		}
 		else
@@ -140,9 +134,108 @@ public class ViewController {
 			model.addAttribute("redirectPage","income");
 			return "failure";
 		}
-//		return "income";
 	}
 
+	@GetMapping("/processExpensePage")
+	public String processExpensePage(HttpServletRequest request, @ModelAttribute("expense") Expense expense, Model model) {
+
+		Income checkIncome= apiService.getIncomeById(incomeid);
+		checkIncome=apiService.saveExpense(checkIncome,expense);
+
+		if(true)
+		{
+			model.addAttribute("action", "add expense");
+			model.addAttribute("redirectPageName","DashboardCalendar");
+			model.addAttribute("redirectPage","dashboardCalendar");
+			model.addAttribute("income",checkIncome);
+			return "success";
+		}
+		else
+		{
+			model.addAttribute("action", "add expense");
+			model.addAttribute("redirectPageName","Expense");
+			model.addAttribute("redirectPage","expense");
+			return "failure";
+		}
+	}
+
+
+	@GetMapping("/processDashboardCalendarPage")
+	public String processDashboardCalendarPage(HttpServletRequest request, Model model, @RequestParam(value = "day", required = false) String day,
+											   @RequestParam(value = "month", required = false) String month,
+											   @RequestParam(value = "year", required = false) String year) {
+		List<User> userList = apiService.getAllUsers();
+		if(request.getParameter("submit").equals("dashboardType"))
+		{
+			model.addAttribute("users", userList);
+			return "dashboardType";
+		}
+		List<User> filteredList = new ArrayList<>();
+		for (User user : userList) {
+			List<Income> filteredIncomes = new ArrayList<>();
+			for (Income income : user.getIncomes()) {
+				if ((income.getDate()!=null) && (day != null && !day.isEmpty() && !(Integer.parseInt(day)==income.getDate().getDayOfMonth()))) {
+					continue;
+				}
+				else if ((income.getDate()!=null) && (month != null && !month.isEmpty() && !(Integer.parseInt(month)==income.getDate().getMonthValue()))) {
+					continue;
+				}
+				else if ((income.getDate()!=null) && (year != null && !year.isEmpty() && !(Integer.parseInt(year)==income.getDate().getYear()))) {
+					continue;
+				}
+				filteredIncomes.add(income);
+			}
+			user.setIncomes(filteredIncomes);
+			filteredList.add(user);
+		}
+		model.addAttribute("users", filteredList);
+		return "dashboardCalendar";
+	}
+	@GetMapping("/processDashboardTypePage")
+	public String processDashboardTypePage(HttpServletRequest request, Model model, @RequestParam(value = "incomeType", required = false) String incomeType,
+											   @RequestParam(value = "expenseType", required = false) String expenseType) {
+		List<User> userList = apiService.getAllUsers();
+		if(request.getParameter("submit").equals("dashboardCalendar"))
+		{
+			model.addAttribute("users", userList);
+			return "dashboardCalendar";
+		}
+		List<User> filteredList = new ArrayList<>();
+		for (User user : userList) {
+			List<Income> filteredIncomes = new ArrayList<>();
+			for (Income income : user.getIncomes()) {
+				if (incomeType != null && !incomeType.isEmpty()) {
+					boolean foundIncomeType = false;
+					for (IncomeType type : income.getIncomeTypes()) {
+						if (type.getName().equalsIgnoreCase(incomeType)) {
+							foundIncomeType = true;
+							break;
+						}
+					}
+					if (!foundIncomeType) {
+						continue;
+					}
+				}
+				else if (expenseType != null && !expenseType.isEmpty()) {
+					boolean foundExpenseType = false;
+					for (ExpenseType type : income.getExpense().getExpenseTypes()) {
+						if (type.getName().equalsIgnoreCase(expenseType)) {
+							foundExpenseType = true;
+							break;
+						}
+					}
+					if (!foundExpenseType) {
+						continue;
+					}
+				}
+				filteredIncomes.add(income);
+			}
+			user.setIncomes(filteredIncomes);
+			filteredList.add(user);
+		}
+		model.addAttribute("users", filteredList);
+		return "dashboardType";
+	}
 	@GetMapping("/login")
 	public String login() {
 		return "login";

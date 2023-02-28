@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "username")
     private String username;
@@ -27,20 +27,22 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_income",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "income_id")})
     private List<Income> incomes;
 
-    public User(){}
+    public User(){
+        incomes=new ArrayList<>();
+    }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

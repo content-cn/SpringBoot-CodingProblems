@@ -11,11 +11,14 @@ spring:
     password: root
     driver-class: com.mysql.cj.jdbc.Driver
   jpa:
-    properties.hibernate-dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
     hibernate.globally_quoted_identifiers: true
+    hibernate.connection: autocommit
 
 
 server:

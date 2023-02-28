@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td>Enter your Date:</td>
-                    <td><form:input path="date"/></td>
+                    <td><form:input path="date" placeholder="dd-mm-yyyy"/></td>
                     <td><form:errors path="date" cssStyle="color: #ff0000;" /></td>
                 </tr>
                 <tr>

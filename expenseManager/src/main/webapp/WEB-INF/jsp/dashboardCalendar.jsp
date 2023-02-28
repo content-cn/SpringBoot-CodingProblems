@@ -24,14 +24,14 @@
                 <th>Nickname</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>IncomeDescription</th>
-                <th>IncomeAmount</th>
-                <th>IncomeDate</th>
-                <th>IncomeTypes</th>
-                <th>ExpenseDescription</th>
-                <th>ExpenseAmount</th>
-                <th>ExpenseDate</th>
-                <th>ExpenseTypes</th>
+                <th>IncoDesc</th>
+                <th>IncAmt</th>
+                <th>IncDate</th>
+                <th>IncTypes</th>
+                <th>ExpDesc</th>
+                <th>ExpAmt</th>
+                <th>ExpDate</th>
+                <th>ExpTypes</th>
             </tr>
             <c:forEach var="user" items="${users}">
                 <c:forEach var="income" items="${user.incomes}">
@@ -46,7 +46,7 @@
                             <td>
                                 <c:set var="incomeTypes" value=""/>
                                 <c:forEach var="incomeType" items="${income.incomeTypes}">
-                                    <c:set var="incomeTypes" value="${incomeType.name}, "/>
+                                    <c:set var="incomeTypes" value="${incomeTypes}${incomeType.name}, "/>
                                 </c:forEach>
                                 ${incomeTypes}
                             </td>
@@ -56,7 +56,7 @@
                              <td>
                                 <c:set var="expenseTypes" value=""/>
                                 <c:forEach var="expenseType" items="${income.expense.expenseTypes}">
-                                <c:set var="expenseTypes" value="${expenseType.name}, "/>
+                                <c:set var="expenseTypes" value="${expenseTypes}${expenseType.name}, "/>
                                 </c:forEach>
                                 ${expenseTypes}
                              </td>

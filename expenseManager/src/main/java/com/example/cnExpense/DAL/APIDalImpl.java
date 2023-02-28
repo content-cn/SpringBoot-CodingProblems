@@ -3,7 +3,6 @@ package com.example.cnExpense.DAL;
 import com.example.cnExpense.entities.*;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,9 +10,6 @@ import java.util.List;
 
 @Repository
 public class APIDalImpl implements APIDal {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     EntityManager entityManager;
@@ -62,6 +58,7 @@ public class APIDalImpl implements APIDal {
         return user;
     }
 
+    @Override
     public Income getIncomeById(Integer id){
         Session session = entityManager.unwrap(Session.class);
         return session.get(Income.class,id);

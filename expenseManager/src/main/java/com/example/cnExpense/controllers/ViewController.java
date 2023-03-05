@@ -2,13 +2,16 @@ package com.example.cnExpense.controllers;
 
 import com.example.cnExpense.entities.*;
 import com.example.cnExpense.jspEntities.Choice;
-import com.example.cnExpense.service.APIService;
+import com.example.cnExpense.service.ExpenseService;
+import com.example.cnExpense.service.IncomeService;
+import com.example.cnExpense.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,13 @@ public class ViewController{
 	public static Integer incomeid;
 
 	@Autowired
-	private APIService apiService;
+	private UserService userService;
+
+	@Autowired
+	private IncomeService incomeService;
+
+	@Autowired
+	private ExpenseService expenseService;
 
 	@GetMapping({"", "/home"})
 	public String home() {
@@ -53,12 +62,12 @@ public class ViewController{
 		{
 			return "register";
 		}
-		if(apiService.checkUserExist(user))
+		if(userService.checkUserExist(user))
 		{
 			model.addAttribute("action", "logged into");
 			model.addAttribute("redirectPageName","Income");
 			model.addAttribute("redirectPage","income");
-			User savedUser=apiService.findUser(user);
+			User savedUser=userService.findUser(user);
 			userid=savedUser.getId();
 			return "success";
 		}
@@ -84,7 +93,7 @@ public class ViewController{
 		}
 		else if(request.getParameter("redirectPage").equals("dashboardCalendar")){
 
-			List<User>users=apiService.getAllUsers();
+			List<User>users=userService.getAllUsers();
 			model.addAttribute("users",users);
 		}
 		return request.getParameter("redirectPage");
@@ -97,9 +106,9 @@ public class ViewController{
 		{
 			return "login";
 		}
-		if(apiService.checkUserExist(user)==false)
+		if(userService.checkUserExist(user)==false)
 		{
-			apiService.saveUser(user);
+			userService.saveUser(user);
 			model.addAttribute("action", "registered into");
 			model.addAttribute("redirectPageName","Home");
 			model.addAttribute("redirectPage","home");
@@ -117,8 +126,8 @@ public class ViewController{
 
 	@GetMapping("/processIncomePage")
 	public String processIncomePage(HttpServletRequest request, @ModelAttribute("income") Income income, Model model) {
-		User user= apiService.getUserById(userid);
-		Income savedIncome=apiService.saveIncome(user,income);
+		User user= userService.getUserById(userid);
+		Income savedIncome=incomeService.saveIncome(user,income);
 		incomeid=savedIncome.getId();
 		if(true)
 		{
@@ -139,8 +148,8 @@ public class ViewController{
 	@GetMapping("/processExpensePage")
 	public String processExpensePage(HttpServletRequest request, @ModelAttribute("expense") Expense expense, Model model) {
 
-		Income checkIncome= apiService.getIncomeById(incomeid);
-		checkIncome=apiService.saveExpense(checkIncome,expense);
+		Income checkIncome= incomeService.getIncomeById(incomeid);
+		checkIncome=expenseService.saveExpense(checkIncome,expense);
 
 		if(true)
 		{
@@ -164,7 +173,7 @@ public class ViewController{
 	public String processDashboardCalendarPage(HttpServletRequest request, Model model, @RequestParam(value = "day", required = false) String day,
 											   @RequestParam(value = "month", required = false) String month,
 											   @RequestParam(value = "year", required = false) String year) {
-		List<User> userList = apiService.getAllUsers();
+		List<User> userList = userService.getAllUsers();
 		if(request.getParameter("submit").equals("dashboardType"))
 		{
 			model.addAttribute("users", userList);
@@ -194,7 +203,7 @@ public class ViewController{
 	@GetMapping("/processDashboardTypePage")
 	public String processDashboardTypePage(HttpServletRequest request, Model model, @RequestParam(value = "incomeType", required = false) String incomeType,
 											   @RequestParam(value = "expenseType", required = false) String expenseType) {
-		List<User> userList = apiService.getAllUsers();
+		List<User> userList = userService.getAllUsers();
 		if(request.getParameter("submit").equals("dashboardCalendar"))
 		{
 			model.addAttribute("users", userList);

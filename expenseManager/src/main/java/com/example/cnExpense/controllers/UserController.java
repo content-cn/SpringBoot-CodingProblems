@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @GetMapping("/filteredUserListByType")
-    public List<User> processDashboardTypePage(@RequestParam(value = "incomeType", required = false) String incomeType,
+    public List<User> filterUserListByType(@RequestParam(value = "incomeType", required = false) String incomeType,
                                            @RequestParam(value = "expenseType", required = false) String expenseType) {
         List<User> userList = userService.getAllUsers();
         List<User> filteredList = new ArrayList<>();

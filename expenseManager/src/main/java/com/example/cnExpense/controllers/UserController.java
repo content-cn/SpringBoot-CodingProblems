@@ -94,7 +94,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/check-User-exist")
+    @PostMapping("/checkUserExist")
     public boolean checkUserExist(@RequestBody User user) {
         return userService.checkUserExist(user);
     }

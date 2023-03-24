@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/incomes")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class IncomeController {
 
     @Autowired
@@ -18,8 +19,11 @@ public class IncomeController {
         return incomeService.getIncomeById(incomeid);
     }
 
-    @PostMapping("save")
-    public Income saveIncome(@RequestBody User user, @RequestBody Income income) {
+    @PostMapping("save/{userId}")
+    @ResponseBody
+    public Income saveIncome(@PathVariable Integer userId, @RequestBody Income income) {
+        User user=new User();
+        user.setId(userId);
         return incomeService.saveIncome(user, income);
     }
 }

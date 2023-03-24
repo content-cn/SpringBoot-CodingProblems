@@ -1,5 +1,7 @@
 package com.example.cnExpense.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class ExpenseType {
 
     @ManyToOne
     @JoinColumn(name = "expense_id")
+    @JsonBackReference
     private Expense expense;
 
     public ExpenseType() {}

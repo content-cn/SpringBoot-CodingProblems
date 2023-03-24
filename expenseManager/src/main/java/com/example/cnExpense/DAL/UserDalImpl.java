@@ -43,7 +43,7 @@ public class UserDalImpl implements UserDal {
         Session session = entityManager.unwrap(Session.class);
         for(User user:getAllUsers())
         {
-            if(user.getUsername().equalsIgnoreCase(newUser.getUsername()))
+            if(user.getUsername()!=null && user.getUsername().equalsIgnoreCase(newUser.getUsername()))
             {
                 return user;
             }

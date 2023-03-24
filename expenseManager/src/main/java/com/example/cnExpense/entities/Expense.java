@@ -1,5 +1,8 @@
 package com.example.cnExpense.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,10 +29,11 @@ public class Expense {
     private User user;
 
     @OneToOne(mappedBy = "expense")
+    @JsonBackReference
     private Income income;
 
-
     @OneToMany(mappedBy = "expense", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JsonManagedReference
     private List<ExpenseType> expenseTypes;
 
     public Expense() {

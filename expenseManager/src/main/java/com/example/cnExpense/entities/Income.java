@@ -1,5 +1,10 @@
 package com.example.cnExpense.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,12 +29,17 @@ public class Income {
 
     @OneToOne
     @JoinColumn(name = "expense_id")
+    @JsonManagedReference
     private Expense expense;
 
     @ManyToMany(mappedBy = "incomes")
+    @JsonBackReference
+    @JsonIgnore
     private List<User> users;
 
     @OneToMany(mappedBy = "income", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JsonManagedReference
+    @JsonIgnore
     private List<IncomeType> incomeTypes;
 
     public Income() {
@@ -58,6 +68,7 @@ public class Income {
         this.amount = amount;
     }
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDate getDate() {
         return date;
     }
@@ -96,6 +107,16 @@ public class Income {
 
     public void setExpense(Expense expense) {
         this.expense = expense;
+    }
+
+    @Override
+    public String toString() {
+        return "Income{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
 

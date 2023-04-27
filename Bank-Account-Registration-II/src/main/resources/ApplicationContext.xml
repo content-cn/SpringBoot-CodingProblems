@@ -1,0 +1,21 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    User bean-->
+    <bean id="user" class="com.codingNinjas.Bank.Account.Registration.myUser" init-method="init"
+    destroy-method="destroy">
+        <property name="name" value=""/>
+    </bean>
+
+<!--    Account Beans-->
+    <bean id="currentAccount" class="com.codingNinjas.Bank.Account.Registration.currentAccount" scope="prototype"
+    init-method="init">
+        <property name="balance"  value="0.0"/>
+    </bean>
+    <bean id="savingsAccount" class="com.codingNinjas.Bank.Account.Registration.savingsAccount" scope="prototype"
+    init-method="init">
+        <property name="balance" value="0.0"/>
+    </bean>
+
+</beans>
